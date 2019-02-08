@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="MailClient.View.Components.Alert"
+			xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+			xmlns:local="clr-namespace:MailClient.View.Components"
+			mc:Ignorable="d" 
+			xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+			TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+			TextElement.FontWeight="Regular"
+			TextElement.FontSize="12"
+			TextOptions.TextFormattingMode="Ideal"
+			TextOptions.TextRenderingMode="Auto"
+			Background="{DynamicResource MaterialDesignPaper}"
+			FontFamily="{DynamicResource MaterialDesignFont}">
+	<Grid>
+		<materialDesign:DialogHost  x:Name="dhExceptionMessage" Style="{StaticResource MaterialDesignEmbeddedDialogHost}" DialogMargin="8" IsOpen="{Binding IsOpen}">
+			<materialDesign:DialogHost.DialogContent>
+				<StackPanel Margin="16">
+					<StackPanel Margin="16">
+						<materialDesign:PackIcon Kind="AccountAlert" HorizontalAlignment="Center" Margin="15" Width="32" Height="32" Foreground="Orange"/>
+						<TextBlock x:Name="tbExceptionTitle" Style="{StaticResource MaterialDesignTitleTextBlock}" HorizontalAlignment="Center" TextWrapping="Wrap" Margin="5" Text="{Binding Title}">Al parecer, ocurrió un problema...</TextBlock>
+						<TextBlock x:Name="tbExceptionBody" Style="{StaticResource MaterialDesignBody2TextBlock}" HorizontalAlignment="Center" TextWrapping="Wrap"  Margin="5" Text="{Binding Body}">...</TextBlock>
+					</StackPanel>
+					<StackPanel>
+						<Button x:Name="btnCloseDialog" Style="{StaticResource MaterialDesignFlatButton}" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}">Continuar</Button>
+					</StackPanel>
+				</StackPanel>
+			</materialDesign:DialogHost.DialogContent>
+		</materialDesign:DialogHost>
+
+
+	</Grid>
+</UserControl>

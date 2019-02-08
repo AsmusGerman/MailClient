@@ -1,0 +1,86 @@
+﻿<Window xmlns:Components="clr-namespace:MailClient.View.Components"  x:Class="MailClient.View.Message"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MailClient.View"
+        mc:Ignorable="d"
+        Title="Message" Height="680" Width="460"
+		
+		xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+		 TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+		 TextElement.FontWeight="Regular"
+		 TextElement.FontSize="12"
+		 TextOptions.TextFormattingMode="Ideal"
+		 TextOptions.TextRenderingMode="Auto"
+		 Background="{DynamicResource MaterialDesignPaper}"
+		 FontFamily="{DynamicResource MaterialDesignFont}">
+	<Grid>
+		<Components:Alert x:Name="aErrorMessage"/>
+
+		<materialDesign:Card Margin="10" VerticalAlignment="Stretch">
+			<StackPanel VerticalAlignment="Stretch">
+				<materialDesign:ColorZone Mode="PrimaryMid" Effect="{DynamicResource MaterialDesignShadowDepth2}">
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*"/>
+							<ColumnDefinition Width="auto"/>
+							<ColumnDefinition Width="auto"/>
+							<ColumnDefinition Width="auto"/>
+						</Grid.ColumnDefinitions>
+
+						<TextBlock Grid.Column="0" x:Name="tbFromMailAddress" Margin="15">Nuevo Mensaje</TextBlock>
+						<Button Grid.Column="1" x:Name="btnNewMessage" Click="btnNewMessage_Click" Style="{StaticResource MaterialDesignFlatButton}" VerticalAlignment="Center" HorizontalAlignment="Right">
+							<materialDesign:PackIcon Kind="Send" Height="24" Width="24" Foreground="Orange" VerticalAlignment="Center"
+                                HorizontalAlignment="Center" />
+						</Button>
+					</Grid>
+				</materialDesign:ColorZone>
+				<StackPanel Margin="0 5" VerticalAlignment="Stretch">
+
+					<GroupBox Header="Para"  Margin="15 5">
+						<StackPanel>
+							<TextBox x:Name="tbxToMailAddresses" KeyUp="tbxToMailAddresses_KeyUp"></TextBox>
+							<ListView Name="lvToMailAddresses">
+								<ListView.ItemsPanel>
+									<ItemsPanelTemplate>
+										<WrapPanel	Width="{
+														Binding (FrameworkElement.ActualWidth),
+														RelativeSource={RelativeSource AncestorType=ScrollContentPresenter}
+													}"
+                                                    ItemWidth="{
+														Binding (ListView.View).ItemWidth,
+														RelativeSource={RelativeSource AncestorType=ListView}
+													}"
+                                                    MinWidth="{
+														Binding ItemWidth,
+														RelativeSource={RelativeSource Self}
+													}"
+                                                    ItemHeight="{
+														Binding (ListView.View).ItemHeight,
+														RelativeSource={RelativeSource AncestorType=ListView}
+													}" />
+									</ItemsPanelTemplate>
+								</ListView.ItemsPanel>
+								<ListView.ItemTemplate>
+									<ItemContainerTemplate>
+										<Label Content="{Binding}" MouseDoubleClick="Label_MouseDoubleClick" Margin="-5" FontSize="10" Foreground="Blue" Background="Transparent"></Label>
+									</ItemContainerTemplate>
+								</ListView.ItemTemplate>
+							</ListView>
+						</StackPanel>
+					</GroupBox>
+
+					<GroupBox Header="Asunto" Margin="15 5">
+						<TextBox x:Name="tbxMailSubject"></TextBox>
+					</GroupBox>
+
+
+					<GroupBox Header="Mensaje" Margin="15 5">
+						<Components:RichTextControl />
+					</GroupBox>
+				</StackPanel>
+			</StackPanel>
+		</materialDesign:Card>
+	</Grid>
+</Window>

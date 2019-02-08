@@ -1,0 +1,107 @@
+﻿<Page	x:Class="MailClient.View.Inbox"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:local="clr-namespace:MailClient.View"
+		mc:Ignorable="d"
+		Title="Inbox" Height="680" Width="460"
+		
+		xmlns:Components="clr-namespace:MailClient.View.Components"
+
+		xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+		TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+		TextElement.FontWeight="Regular"
+		TextElement.FontSize="12"
+		TextOptions.TextFormattingMode="Ideal"
+		TextOptions.TextRenderingMode="Auto"
+		Background="{DynamicResource MaterialDesignPaper}"
+		FontFamily="{DynamicResource MaterialDesignFont}">
+
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="auto" />
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="auto"/>
+			<ColumnDefinition Width="*"/>
+		</Grid.ColumnDefinitions>
+
+		<Components:InboxMenu Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" />
+
+		<materialDesign:ColorZone Grid.Row="0" Grid.ColumnSpan="2" Mode="PrimaryMid" Effect="{DynamicResource MaterialDesignShadowDepth2}">
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="auto"/>
+					<ColumnDefinition Width="auto"/>
+					<ColumnDefinition Width="auto"/>
+				</Grid.ColumnDefinitions>
+
+				<TextBlock Grid.Column="0" x:Name="tbMailAddress" Margin="15"></TextBlock>
+				<Button Grid.Column="1" x:Name="btnNewMessage" Style="{StaticResource MaterialDesignFlatButton}" VerticalAlignment="Center" HorizontalAlignment="Right" Click="btnNewMessage_Click">
+					<materialDesign:PackIcon Kind="Plus" Height="24" Width="24" Foreground="Orange" VerticalAlignment="Center"
+                                HorizontalAlignment="Center" />
+				</Button>
+				<Button Grid.Column="2" x:Name="btnUpdate" Style="{StaticResource MaterialDesignFlatButton}" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 5 0" Click="btnUpdate_Click">
+					<materialDesign:PackIcon Kind="Update" Height="24" Width="24" Foreground="Orange" VerticalAlignment="Center"
+                                HorizontalAlignment="Center" />
+				</Button>
+				<Button Grid.Column="3" x:Name="btnOptions" Style="{StaticResource MaterialDesignFlatButton}" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 5 0">
+					<materialDesign:PackIcon Kind="Settings" Height="24" Width="24" Foreground="Orange" VerticalAlignment="Center"
+                                HorizontalAlignment="Center" />
+				</Button>
+			</Grid>
+		</materialDesign:ColorZone>
+
+		<DataGrid Grid.Row="1" Grid.Column="1" Name="dtgMessages" Margin="0 5 0 0"
+					CanUserSortColumns="True"
+					CanUserAddRows="False"
+					AutoGenerateColumns="False"
+					VerticalScrollBarVisibility="Auto"
+					materialDesign:DataGridAssist.ColumnHeaderPadding="2">
+			<DataGrid.Columns>
+				<DataGridCheckBoxColumn Binding="{Binding IsSelected}" 
+							ElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnStyle}"
+							EditingElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnEditingStyle}">
+					<DataGridCheckBoxColumn.Header>
+						<CheckBox HorizontalAlignment="Center"
+									VerticalAlignment="Center"
+									DataContext="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, Path=DataContext}"
+									IsChecked="{Binding IsAllItems3Selected}" />
+					</DataGridCheckBoxColumn.Header>
+				</DataGridCheckBoxColumn>
+
+
+				<materialDesign:MaterialDataGridTextColumn Binding="{Binding From}"
+							Header="De:"
+							EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+
+
+				<materialDesign:MaterialDataGridTextColumn Binding="{Binding Subject}"
+							Width="*"
+							Header="Asunto"
+							EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
+
+				<!--Acciones-->
+				<DataGridTemplateColumn>
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+								<Button  Style="{StaticResource MaterialDesignFlatButton}" VerticalAlignment="Center">
+									<materialDesign:PackIcon Kind="ReplyAll" Height="24" Width="24"  Foreground="Orange" VerticalAlignment="Center"
+                                HorizontalAlignment="Center" />
+								</Button>
+								<Button Style="{StaticResource MaterialDesignFlatButton}" VerticalAlignment="Center">
+									<materialDesign:PackIcon Kind="Delete" Height="24" Width="24"  Foreground="Orange" VerticalAlignment="Center"
+                                HorizontalAlignment="Center" />
+								</Button>
+							</StackPanel>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+			</DataGrid.Columns>
+		</DataGrid>
+	</Grid>
+</Page>
