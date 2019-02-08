@@ -69,9 +69,11 @@
     <Compile Include="Exceptions\UnknownMailAccount.cs" />
     <Compile Include="Exceptions\NoUserAccountsFound.cs" />
     <Compile Include="Exceptions\FailOnNewUser.cs" />
-    <Compile Include="Interfaces\IAuthServiceBLL.cs" />
-    <Compile Include="Interfaces\IMailServiceBLL.cs" />
-    <Compile Include="MCCore.cs" />
+    <Compile Include="Interfaces\IAuthenticationService.cs" />
+    <Compile Include="Interfaces\IMailAccountService.cs" />
+    <Compile Include="Interfaces\IMailServiceCollection.cs" />
+    <Compile Include="Classes\MailServiceCollection.cs" />
+    <Compile Include="Classes\MCCore.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\ExceptionMessages.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -83,7 +85,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Files.resx</DependentUpon>
     </Compile>
-    <Compile Include="Serializer.cs" />
+    <Compile Include="Selectors\MailServiceSelector.cs" />
+    <Compile Include="Classes\Serializer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MailClient.DAL\MailClient.DAL.csproj">

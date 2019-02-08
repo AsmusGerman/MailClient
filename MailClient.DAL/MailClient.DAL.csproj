@@ -49,27 +49,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configurations\MailAttachmentConfiguration.cs" />
     <Compile Include="Configurations\MailAccountConfiguration.cs" />
     <Compile Include="Configurations\MailAddressConfiguration.cs" />
     <Compile Include="Configurations\MailMessageConfiguration.cs" />
-    <Compile Include="MCDAL.cs" />
-    <Compile Include="Migrations\201901230319042_zyx.cs" />
-    <Compile Include="Migrations\201901230319042_zyx.Designer.cs">
-      <DependentUpon>201901230319042_zyx.cs</DependentUpon>
+    <Compile Include="Classes\MCDAL.cs" />
+    <Compile Include="Exceptions\RepositoryOperationException.cs" />
+    <Compile Include="Exceptions\DataAccessLayerException.cs" />
+    <Compile Include="Exceptions\SavingContextException.cs" />
+    <Compile Include="Interfaces\IRepository.cs" />
+    <Compile Include="Interfaces\IUnitOfWork.cs" />
+    <Compile Include="Migrations\201902072330131_initial.cs" />
+    <Compile Include="Migrations\201902072330131_initial.Designer.cs">
+      <DependentUpon>201902072330131_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Resources\ExceptionMessages.Designer.cs">
+    <Compile Include="Resources\Exceptions.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ExceptionMessages.resx</DependentUpon>
+      <DependentUpon>Exceptions.resx</DependentUpon>
     </Compile>
-    <Compile Include="Context.cs" />
-    <Compile Include="Exceptions\FailOnGet.cs" />
-    <Compile Include="Exceptions\FailOnRemove.cs" />
-    <Compile Include="Exceptions\FailOnAdd.cs" />
+    <Compile Include="Classes\Context.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository.cs" />
-    <Compile Include="UnitOfWork.cs" />
+    <Compile Include="Classes\Repository.cs" />
+    <Compile Include="Classes\UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -85,12 +88,12 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201901230319042_zyx.resx">
-      <DependentUpon>201901230319042_zyx.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201902072330131_initial.resx">
+      <DependentUpon>201902072330131_initial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\ExceptionMessages.resx">
+    <EmbeddedResource Include="Resources\Exceptions.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>ExceptionMessages.Designer.cs</LastGenOutput>
+      <LastGenOutput>Exceptions.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

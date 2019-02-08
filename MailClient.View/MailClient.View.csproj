@@ -181,7 +181,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="unity.config" />
+    <None Include="Configuration\unity.config" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -195,6 +195,9 @@
       <Project>{692417D2-9A32-4F5E-BD43-05AF3CD0E64C}</Project>
       <Name>MailClient.Shared</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Configuration\Services.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

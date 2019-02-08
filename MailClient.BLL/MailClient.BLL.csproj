@@ -80,15 +80,17 @@
     <Compile Include="Extensions\MessageExtension.cs" />
     <Compile Include="Extensions\Pop3ClientExtension.cs" />
     <Compile Include="Extensions\SmtpClientExtension.cs" />
-    <Compile Include="AuthServiceBLL.cs" />
+    <Compile Include="Services\AuthenticationService.cs" />
     <Compile Include="Exceptions\LoginException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="MailServiceBLL.cs" />
+    <Compile Include="Services\MailAccountService.cs" />
     <Compile Include="Resources\Exceptions.Designer.cs">
       <DependentUpon>Exceptions.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Selectors\EntitySelector.cs" />
+    <Compile Include="Selectors\MailAccountSelector.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MailClient.Core\MailClient.Core.csproj">
@@ -113,9 +115,7 @@
       <LastGenOutput>Exceptions.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Serializer\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

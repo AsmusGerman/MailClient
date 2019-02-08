@@ -6,6 +6,13 @@ namespace MailClient.Shared
 	[Serializable]
 	public class MailService
 	{
-		public Protocol[] Protocols { get; set; }
+        /// <summary>
+        /// nombre del servicio de correo
+        /// </summary>
+        public string Name { get; set; }
+        /// <summary>
+        /// colección de los protocolos definidos
+        /// </summary>
+        public Protocol[] Protocols { get; set; }
 	}
 }

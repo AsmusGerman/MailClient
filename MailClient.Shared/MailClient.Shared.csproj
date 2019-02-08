@@ -40,36 +40,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interfaces\ICommunicationProtocol.cs" />
+    <Compile Include="Exceptions\CastOperationException.cs" />
     <Compile Include="Interfaces\IEncryptor.cs" />
     <Compile Include="Model\BaseEntity.cs" />
-    <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Model\MailAddress.cs" />
     <Compile Include="Model\Attachment.cs" />
     <Compile Include="Model\MailService.cs" />
     <Compile Include="Model\Protocol.cs" />
     <Compile Include="Model\Tag.cs" />
-    <Compile Include="Resources\ExceptionMessages.Designer.cs">
-      <DependentUpon>ExceptionMessages.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="Exceptions\UnknownErrorException.cs" />
     <Compile Include="Exceptions\WellKnownException.cs" />
     <Compile Include="Interfaces\IMailService.cs" />
-    <Compile Include="Interfaces\IUnitOfWork.cs" />
     <Compile Include="Model\MailAccount.cs" />
     <Compile Include="Model\MailMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Selectors\EntitySelector.cs" />
     <Compile Include="Interfaces\ISelector.cs" />
-    <Compile Include="Selectors\MailAccountSelector.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\ExceptionMessages.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>ExceptionMessages.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

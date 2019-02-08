@@ -28,6 +28,15 @@ namespace MailClient.DAL
 				.HasMaxLength(256)
 				.IsRequired();
 
+            Property(bMailAccount => bMailAccount.DownloadsFolder)
+                .HasColumnType("nvarchar")
+                .HasMaxLength(256)
+                .IsRequired();
+
+
+            Property(bMailAccount => bMailAccount.Deleted)
+                .IsRequired();
+
 			HasRequired(bMailAccount => bMailAccount.MailAddress)
 				.WithOptional(bMailAddress => bMailAddress.MailAccount).Map(v=> v.MapKey("MailAdressId"))
 				.WillCascadeOnDelete(false);

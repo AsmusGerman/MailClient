@@ -117,10 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Folder" xml:space="preserve">
-    <value>/Configuration</value>
+  <data name="CastOperationException" xml:space="preserve">
+    <value>Error al castear el tipo de entidad referenciado por el dbset del repositorio.</value>
   </data>
-  <data name="Services" xml:space="preserve">
-    <value>Services.xml</value>
+  <data name="CreateEntitiesException" xml:space="preserve">
+    <value>Error al tratar de crear la colección de entidades en la base de datos.</value>
+  </data>
+  <data name="CreateEntityException" xml:space="preserve">
+    <value>Error al tratar de crear una entidad en la base de datos.</value>
+  </data>
+  <data name="GetAllEntitiesException" xml:space="preserve">
+    <value>Error al tratar de obtener las entidades de la base de datos.</value>
+  </data>
+  <data name="GetSingleEntityException" xml:space="preserve">
+    <value>Error al tratar de obtener la entidad de la base de datos. Verifique que el criterio de filtrado no genere más de un resultado.</value>
+  </data>
+  <data name="RemoveEntityException" xml:space="preserve">
+    <value>Error al tratar de eliminar la entidad de la base de datos.</value>
+  </data>
+  <data name="SavingContextException" xml:space="preserve">
+    <value>Error al tratar de preservar los datos en la base de datos. Verifique que no existan problemas con la conexión.</value>
   </data>
 </root>
