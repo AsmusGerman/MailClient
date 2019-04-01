@@ -17,12 +17,22 @@ namespace MailClient.BLL.Selectors
 		{
 			return new MailAccountSelector(bMailAccount => bMailAccount.Alias.Equals(pAlias));
 		}
-		/// <summary>
-		/// devuelve el selector para buscar una cuenta por correo electronico
-		/// </summary>
-		public static MailAccountSelector ByMailAddress(string pMailAddress)
+
+        public static MailAccountSelector ByAlias(string pAlias, string pPassword)
+        {
+            return new MailAccountSelector(bMailAccount => bMailAccount.Alias.Equals(pAlias) && bMailAccount.Password.Equals(pPassword));
+        }
+        /// <summary>
+        /// devuelve el selector para buscar una cuenta por correo electronico
+        /// </summary>
+        public static MailAccountSelector ByMailAddress(string pMailAddress)
 		{
 			return new MailAccountSelector(bMailAccount => bMailAccount.MailAddress.Value.Equals(pMailAddress));
 		}
-	}
+
+        public static MailAccountSelector ByMailAddress(string pMailAddress, string pPassword)
+        {
+            return new MailAccountSelector(bMailAccount => bMailAccount.MailAddress.Value.Equals(pMailAddress) && bMailAccount.Password.Equals(pPassword));
+        }
+    }
 }

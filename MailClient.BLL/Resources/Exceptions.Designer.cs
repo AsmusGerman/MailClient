@@ -19,7 +19,7 @@ namespace MailClient.BLL.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Exceptions {
@@ -75,6 +75,15 @@ namespace MailClient.BLL.Resources {
         internal static string Encrypt_FailOnEncrypt {
             get {
                 return ResourceManager.GetString("Encrypt_FailOnEncrypt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error al intentar verificar la cuenta con los datos argumentados. Verifique que los datos son correctos..
+        /// </summary>
+        internal static string LoginException {
+            get {
+                return ResourceManager.GetString("LoginException", resourceCulture);
             }
         }
         
@@ -210,6 +219,15 @@ namespace MailClient.BLL.Resources {
         internal static string Pop3ClientExtension_GetWindowedMessages_UnknownErrorException {
             get {
                 return ResourceManager.GetString("Pop3ClientExtension_GetWindowedMessages_UnknownErrorException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error al intentar registrar la cuenta..
+        /// </summary>
+        internal static string RegisterException {
+            get {
+                return ResourceManager.GetString("RegisterException", resourceCulture);
             }
         }
         

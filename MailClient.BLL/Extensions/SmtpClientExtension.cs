@@ -14,7 +14,7 @@ namespace MailClient.BLL
 			}
 			catch (Exception bException)
 			{
-				throw new FailOnSend(Resources.Exceptions.SmtpClientExtension_SendMail_FailOnSend,bException);
+				throw new SmtpClientException(Resources.Exceptions.SendMailException,bException);
 			}
 		}
 	}

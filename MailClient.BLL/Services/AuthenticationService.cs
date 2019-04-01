@@ -8,69 +8,86 @@ using System.Linq;
 namespace MailClient.BLL
 {
     public class AuthenticationService : IAuthenticationService
-	{
-		public MailAccount LoginByAlias(string pAlias, string pPassword)
-		{
-			try
-			{
-				MailAccount bMailAccount = MCDAL.Instance.MailAccountRepository.Single(MailAccountSelector.ByAlias(pAlias));
+    {
+        private IEncryptor Encryptor;
 
-				string mPassword = new DPEntryptor().Decrypt(pPassword);
+        public AuthenticationService(IEncryptor pEncriptor)
+        {
+            this.Encryptor = pEncriptor;
+        }
 
-				if (bMailAccount.Password != mPassword) {
-					throw new Exception();
-				}
+        /// <summary>
+        /// obtiene la cuenta correspondiente al alias y a la contraseña
+        /// </summary>
+		public bool LoginByAlias(string pAlias, string pPassword)
+        {
+            try
+            {
+                //se obtiene el repositorio de las cuentas de correo
+                IRepository mRespository = MCDAL.Instance.MailAccountRepository;
+                //Se obtiene la existencia de la cuenta que corresponde a los argumentos
+                return mRespository.Query(MailAccountSelector.ByAlias(pAlias, pPassword));
+            }
+            catch (Exception bException)
+            {
+                throw new LoginException(Resources.Exceptions.LoginException, bException);
+            }
+        }
 
-				return bMailAccount;
-			}
-			catch (Exception bException)
-			{
-				throw new LoginException("", bException);
-			}
-		}
+        /// <summary>
+        /// obtiene la cuenta correspondiente al correo y a la contraseña
+        /// </summary>
+        public bool LoginByMailAddress(string pMailAddress, string pPassword)
+        {
 
-		public MailAccount LoginByMailAddress(string pMailAddress, string pPassword)
-		{
+            try
+            {
+                //se obtiene el repositorio de las cuentas de correo
+                IRepository mRespository = MCDAL.Instance.MailAccountRepository;
+                //Se obtiene la existencia de la cuenta que corresponde a los argumentos
+                return mRespository.Query(MailAccountSelector.ByMailAddress(pMailAddress, pPassword));
+            }
+            catch (Exception bException)
+            {
+                throw new LoginException(Resources.Exceptions.LoginException, bException);
+            }
+        }
 
-			try
-			{
-				MailAccount bMailAccount = MCDAL.Instance.MailAccountRepository.Single(MailAccountSelector.ByMailAddress(pMailAddress));
-				
-				string mPassword = new DPEntryptor().Decrypt(pPassword);
+        /// <summary>
+        /// registra una nueva cuenta de correo
+        /// </summary>
+        public void Register(string pAlias, string pMailAddress, string pPassword)
+        {
+            try
+            {
+                //se obtiene el repositorio de las cuentas de correo
+                IRepository mRespository = MCDAL.Instance.MailAccountRepository;
 
-				if (bMailAccount.Password != mPassword)
-				{
-					throw new Exception();
-				}
+                //se encripta la contraseña
+                string mPassword = this.Encryptor.Encrypt(pPassword);
 
-				return bMailAccount;
-			}
-			catch (Exception bException)
-			{
-				throw new LoginException("", bException);
-			}
-		}
+                //se crea la direccion de correo
+                MailAddress mMailAddress = new MailAddress
+                {
+                    Value = pMailAddress
+                };
 
-		public void Register(string pAlias, string pMailAddress, string pPassword)
-		{
-			string mPassword = new DPEntryptor().Encrypt(pPassword);
+                //se crea la cuenta de correo
+                MailAccount mMailAccount = new MailAccount
+                {
+                    Alias = pAlias,
+                    MailAddress = mMailAddress,
+                    Password = mPassword
+                };
 
+                //se agrega la nueva cuenta al repositorio
+                mRespository.Create(mMailAccount);
+            }
+            catch (Exception bException)
+            {
+                throw new RegisterException(Resources.Exceptions.RegisterException, bException);
+            }
 
-			MailAddress mMailAddress = new MailAddress
-			{
-				Value = pMailAddress
-			};
-
-
-			MailAccount mMailAccount = new MailAccount
-			{
-				Alias = pAlias,
-				MailAddress = mMailAddress,
-				Password = mPassword
-			};
-
-
-			MCDAL.Instance.MailAccountRepository.Create(mMailAccount);
-		}
-	}
+        }
+    }
 }

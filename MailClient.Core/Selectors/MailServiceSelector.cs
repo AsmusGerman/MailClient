@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 
 namespace MailClient.Core.Selectors
 {
-	public class MailServiceSelector : ISelector<MailService>
+	public class MailServiceSelector : ISelector<MailService, bool>
 	{
         public Expression<Func<MailService, bool>> Criteria { get; }
 

@@ -76,6 +76,7 @@
     <Compile Include="Exceptions\FailOnRetrieve.cs" />
     <Compile Include="Exceptions\FailOnSend.cs" />
     <Compile Include="Exceptions\ImNotConnectedException.cs" />
+    <Compile Include="Exceptions\RegisterException.cs" />
     <Compile Include="Exceptions\UnknownComunicationProtocol.cs" />
     <Compile Include="Extensions\MessageExtension.cs" />
     <Compile Include="Extensions\Pop3ClientExtension.cs" />
