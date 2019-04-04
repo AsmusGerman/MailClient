@@ -27,11 +27,12 @@ namespace MailClient.DAL
 			this.iRepositories = new Dictionary<string, IRepository>();
 			this.iRepositories.Add(nameof(MailAccount), this.iUnitOfWork.Repository<MailAccount>());
 			this.iRepositories.Add(nameof(MailAddress), this.iUnitOfWork.Repository<MailAddress>());
+			this.iRepositories.Add(nameof(MailService), this.iUnitOfWork.Repository<MailService>());
 		}
 
-        /// <summary>
-        /// repositorio de las cuentas de correo
-        /// </summary>
+		/// <summary>
+		/// repositorio de las cuentas de correo
+		/// </summary>
 		public IRepository MailAccountRepository
 		{
 			get { return this.iRepositories[nameof(MailAccount)]; }
@@ -45,6 +46,13 @@ namespace MailClient.DAL
 			get { return this.iRepositories[nameof(MailAddress)]; }
 		}
 
+		/// <summary>
+		/// repositorio de los servicios de correo
+		/// </summary>
+		public IRepository MailServiceRepository
+		{
+			get { return this.iRepositories[nameof(MailService)]; }
+		}
 
 		public void Save() {
             try

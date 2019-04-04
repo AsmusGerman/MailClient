@@ -32,9 +32,11 @@
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -47,6 +49,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\MailServiceCollection.cs" />
+    <Compile Include="Classes\Serializer.cs" />
     <Compile Include="Configurations\MailAttachmentConfiguration.cs" />
     <Compile Include="Configurations\MailAccountConfiguration.cs" />
     <Compile Include="Configurations\MailAddressConfiguration.cs" />
@@ -55,6 +59,7 @@
     <Compile Include="Exceptions\RepositoryOperationException.cs" />
     <Compile Include="Exceptions\DataAccessLayerException.cs" />
     <Compile Include="Exceptions\SavingContextException.cs" />
+    <Compile Include="Interfaces\IDataSet.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />
     <Compile Include="Migrations\201902072330131_initial.cs" />

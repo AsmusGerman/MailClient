@@ -82,6 +82,7 @@
     <Compile Include="Extensions\MessageExtension.cs" />
     <Compile Include="Extensions\Pop3ClientExtension.cs" />
     <Compile Include="Extensions\SmtpClientExtension.cs" />
+    <Compile Include="Selectors\MailServiceSelector.cs" />
     <Compile Include="Services\AuthenticationService.cs" />
     <Compile Include="Exceptions\LoginException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

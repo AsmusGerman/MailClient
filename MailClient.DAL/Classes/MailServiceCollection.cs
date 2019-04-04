@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Linq;
-using MailClient.Core.Selectors;
 using MailClient.Shared;
 
-namespace MailClient.Core
+namespace MailClient.DAL
 {
     [Serializable]
     public class MailServiceCollection : IMailServiceCollection
     {
         public MailService[] MailServices { get; set; }
 
-        public MailService ResolveByName(MailServiceSelector pMailServiceSelector)
+        public MailService ResolveByName(ISelector<MailService, bool> pMailServiceSelector)
         {
             return this.MailServices.AsQueryable().SingleOrDefault(pMailServiceSelector.Criteria);
         }

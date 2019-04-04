@@ -3,11 +3,7 @@ using System.Collections.Generic;
 
 namespace MailClient.Core
 {
-    public interface IServicedMailAccountService
-    {
-        IMailAccountService With(MailService pMailService);
-    }
-    public interface IMailAccountService : IServicedMailAccountService
+    public interface IMailAccountService
 	{
         IEnumerable<MailMessage> Retrieve(MailAccount pMailAccount, int pWindow = 0);
 		void Send(MailAccount pMailAccount, MailMessage pMailMessage);

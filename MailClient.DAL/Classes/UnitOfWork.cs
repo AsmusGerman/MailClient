@@ -1,4 +1,5 @@
 ﻿using MailClient.DAL.Exceptions;
+using MailClient.DAL.Interfaces;
 using MailClient.Shared;
 using System;
 
@@ -15,9 +16,9 @@ namespace MailClient.DAL
         /// <summary>
         /// obtiene un repositorio que se encarga de las entidades de tipo T
         /// </summary>
-        public IRepository Repository<T>() where T : BaseEntity
+        public IRepository Repository(IDataSet pDataSet)
         {
-            return new Repository(this.iContext.Set<T>());
+            return new Repository(pDataSet);
         }
 
         /// <summary>

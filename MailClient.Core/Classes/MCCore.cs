@@ -9,8 +9,7 @@ namespace MailClient.Core
     {
         private static MCCore iInstance;
 
-        private IMailServiceCollection iMailServiceCollection;
-        private IServicedMailAccountService iMailAccountService;
+        private IMailAccountService iMailAccountService;
         private IAuthenticationService iAuthenticationService;
 
 
@@ -20,9 +19,6 @@ namespace MailClient.Core
         {
 			try
 			{
-				//carga de los servicios de correo
-				this.iMailServiceCollection = Serializer.Instance.ReadFromFile<MailServiceCollection>(Resources.Files.Services);
-
 				//se resuelven los servicios de la aplicación
 				this.iMailAccountService = ContainerBuilder.Resolve<IMailAccountService>();
 				this.iAuthenticationService = ContainerBuilder.Resolve<IAuthenticationService>();
@@ -95,9 +91,7 @@ namespace MailClient.Core
         {
             try
             {
-                string mMailServiceName = pMailAccount.GetMailServiceHost();
-                MailService mMailService = this.iMailServiceCollection.ResolveByName(MailServiceSelector.ByName(mMailServiceName));
-                return this.iMailAccountService.With(mMailService).Retrieve(pMailAccount, pWindow);
+                return this.iMailAccountService.Retrieve(pMailAccount, pWindow);
             }
             catch (Exception bException)
             {
@@ -109,9 +103,7 @@ namespace MailClient.Core
         {
             try
             {
-                string mMailServiceName = pMailAccount.GetMailServiceHost();
-                MailService mMailService = this.iMailServiceCollection.ResolveByName(MailServiceSelector.ByName(mMailServiceName));
-                this.iMailAccountService.With(mMailService).Send(pMailAccount, pMailMesage);
+                this.iMailAccountService.Send(pMailAccount, pMailMesage);
             }
 			catch (Exception bException)
 			{

@@ -84,7 +84,7 @@ namespace MailClient.DAL
                 throw new RepositoryOperationException(Resources.Exceptions.CreateEntityException, bException);
             }
         }
-       
+
         /// <summary>
         /// persiste una colección de entidades
         /// </summary>

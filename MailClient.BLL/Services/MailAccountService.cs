@@ -4,43 +4,18 @@ using System.Linq;
 using MailClient.Shared;
 using MailClient.DAL;
 using MailClient.Core;
+using MailClient.BLL.Selectors;
 
 namespace MailClient.BLL
 {
 	public class MailAccountService : IMailAccountService
 	{
-		private MailService iMailService;
 		private IDictionary<string, Protocol> iComunicationProtocols;
-
-		public MailService MailService
-		{
-			get
-			{
-				return this.iMailService;
-			}
-			private set
-			{
-				this.iMailService = value;
-
-				this.iComunicationProtocols = new Dictionary<string, Protocol>();
-				foreach (Protocol bProtocol in this.iMailService.Protocols)
-				{
-					this.iComunicationProtocols.Add(bProtocol.Name, bProtocol);
-				}
-			}
-		}
-
-		public MailAccountService() { }
-
 
 		public IEnumerable<MailMessage> Retrieve(MailAccount pMailAccount, int pWindow = 0)
 		{
 			try
 			{
-				if (this.iMailService == default(MailService))
-					throw new Exception();
-
-
 				int mLastMessageId = pMailAccount.MailAddress.FromMessages.Any() ? pMailAccount.MailAddress.FromMessages.Max(bMessage => bMessage.Id) : 0;
 
 				this.GetCommunicationProtocol<Pop3>()
@@ -68,9 +43,6 @@ namespace MailClient.BLL
 
 			try
 			{
-				if (this.iMailService == default(MailService))
-					throw new Exception();
-
 				//guardar el mensaje en el repositorio
 				pMailAccount.MailAddress.FromMessages.Add(pMailMessage);
 				MCDAL.Instance.Save();
@@ -84,21 +56,17 @@ namespace MailClient.BLL
 
 		}
 
-		private T GetCommunicationProtocol<T>() where T : Protocol
+		private T GetCommunicationProtocol<T>(string pMailServiceName) where T : Protocol
 		{
 
 			string mName = typeof(T).Name;
 
-			if (this.iComunicationProtocols.ContainsKey(mName))
-				return (T)this.iComunicationProtocols[mName];
+			MailService mMailService = MCDAL.Instance.MailServiceRepository.Single(MailServiceSelector.ByName(pMailServiceName));
+
+			if (mMailService.Protocols.Any(bProtocol => bProtocol.Name == mName))
+				return (T)mMailService.Protocols.Single(bProtocol => bProtocol.Name == mName);
 
 			throw new UnknownComunicationProtocol(Resources.Exceptions.MailService_GetCommunicationProtocol_UnknownComunicationProtocol + mName);
 		}
-
-        public IMailAccountService With(MailService pMailService)
-        {
-            this.iMailService = pMailService;
-            return this;
-        }
     }
 }

@@ -1,11 +1,12 @@
-﻿using MailClient.Shared;
+﻿using MailClient.DAL.Interfaces;
+using MailClient.Shared;
 using System;
 
 namespace MailClient.DAL
 {
 	public interface IUnitOfWork : IDisposable
 	{
-		IRepository Repository<T>() where T : BaseEntity;
+		IRepository Repository(IDataSet pDataSet);
 		void Save();
 	}
 }
