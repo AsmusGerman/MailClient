@@ -6,100 +6,123 @@ using System.Collections.Generic;
 
 namespace MailClient.View
 {
-	public static class Facade
+	public class Facade
 	{
+		private static Facade iInstance;
+		private MCCore iMCCore;
 
-		public static MailAccount LoginByAlias(string pAlias, string pPassword)
+		private Facade()
+		{
+			this.iMCCore = MCCore.Instance;
+		}
+
+		/// <summary>
+		/// Obtiene la única instancia de la fachada
+		/// </summary>
+		public static Facade Instance
+		{
+			get
+			{
+				if (Facade.iInstance == null)
+				{
+					Facade.iInstance = new Facade();
+				}
+				return Facade.iInstance;
+			}
+		}
+
+		/// <summary>
+		/// Llama al core para ingresar a la aplicación mediante el alias de la cuenta
+		/// </summary>
+		public MailAccount LoginByAlias(string pAlias, string pPassword)
 		{
 			try
 			{
-				return MCCore.Instance.LoginByAlias(pAlias, pPassword);
+				return this.iMCCore.LoginByAlias(pAlias, pPassword);
 			}
 			catch (WellKnownException bException)
 			{
-				throw new LoginException(@"No fue posible acceder a la cuenta de correo. Verifique que los campos ingresados sean correctos e intente nuevamente.",
-					bException);
+				throw new LoginException(Resources.Exceptions.LoginWellKnownException, bException);
 			}
 			catch (UnknownErrorException bException)
 			{
-				throw new LoginException(@"No fue posible acceder a la cuenta de correo. Algo durante la operación salio mal, intente nuevamente. Si el problema persiste, contacte con soporte técnico.",
+				throw new LoginException(Resources.Exceptions.LoginUnknownErrorException,
 					bException);
 			}
 			catch (Exception bException)
 			{
-				throw new LoginException(@"No fue posible acceder a la cuenta de correo. Contacte con soporte técnico.",
-					bException);
+				throw new LoginException(Resources.Exceptions.LoginException, bException);
 			}
 
 		}
 
-		public static MailAccount LoginByMailAddress(string pMailAddress, string pPassword)
+		/// <summary>
+		/// Llama al core para ingresar a la aplicación mediante el correo electrónico de la cuenta
+		/// </summary>
+		public MailAccount LoginByMailAddress(string pMailAddress, string pPassword)
 		{
 			try
 			{
-				return MCCore.Instance.LoginByMailAddress(pMailAddress, pPassword);
+				return this.iMCCore.LoginByMailAddress(pMailAddress, pPassword);
 			}
 			catch (WellKnownException bException)
 			{
-				throw new LoginException(@"No fue posible acceder a la cuenta de correo. Verifique que los campos ingresados sean correctos e intente nuevamente.",
-					bException);
+				throw new LoginException(Resources.Exceptions.LoginWellKnownException, bException);
 			}
 			catch (UnknownErrorException bException)
 			{
-				throw new LoginException(@"No fue posible acceder a la cuenta de correo. Algo durante la operación salio mal, intente nuevamente. Si el problema persiste, contacte con soporte técnico.",
+				throw new LoginException(Resources.Exceptions.LoginUnknownErrorException,
 					bException);
 			}
 			catch (Exception bException)
 			{
-				throw new LoginException(@"No fue posible acceder a la cuenta de correo. Contacte con soporte técnico.",
-					bException);
-			}
-
-		}
-
-		public static void Register(string pAlias, string pMail, string pPassword)
-		{
-			try
-			{
-				MCCore.Instance.Register(pAlias, pMail, pPassword);
-			}
-			catch (WellKnownException bException)
-			{
-				throw new RegisterException(@"No fue posible registrar la cuenta de correo. Verifique que los campos ingresados sean correctos e intente nuevamente.",
-					bException);
-			}
-			catch (UnknownErrorException bException)
-			{
-				throw new RegisterException(@"No fue posible registrar la cuenta de correo. Algo durante la operación salio mal, intente nuevamente. Si el problema persiste, contacte con soporte técnico.",
-					bException);
-			}
-			catch (Exception bException)
-			{
-				throw new RegisterException(@"No fue posible registrar la cuenta de correo. Contacte con soporte técnico.",
-					bException);
+				throw new LoginException(Resources.Exceptions.LoginException, bException);
 			}
 		}
 
-		public static IEnumerable<MailMessage> UpdateInbox(MailAccount pUserAccount, int pWindow = 0)
+		/// <summary>
+		/// Pide al core que registre una cuenta con los valores parametrizados
+		/// </summary>
+		public void Register(string pAlias, string pMail, string pPassword)
 		{
 			try
 			{
-				return MCCore.Instance.UpdateInbox(pUserAccount, pWindow);
+				this.iMCCore.Register(pAlias, pMail, pPassword);
 			}
 			catch (WellKnownException bException)
 			{
-				throw new UpdateInboxException(@"No fue posible actualizar la casilla de correo. Verifique que haya conexión a internet.",
-					bException);
+				throw new RegisterException(Resources.Exceptions.RegisterWellKnownException, bException);
 			}
 			catch (UnknownErrorException bException)
 			{
-				throw new UpdateInboxException(@"No fue posible actualizar la casilla de correo. Algo durante la operación salio mal, intente nuevamente. Si el problema persiste, contacte con soporte técnico.",
-					bException);
+				throw new RegisterException(Resources.Exceptions.RegisterUnkownErrorException, bException);
 			}
 			catch (Exception bException)
 			{
-				throw new UpdateInboxException(@"No fue posible actualizar la casilla de correo. Contacte con soporte técnico.",
-					bException);
+				throw new RegisterException(Resources.Exceptions.RegisterException, bException);
+			}
+		}
+
+		/// <summary>
+		/// Pide al core que actualice la casilla de correos de la cuenta teniendo en cuenta la cantidad de mensajes que debe descargar
+		/// </summary>
+		public IEnumerable<MailMessage> UpdateInbox(MailAccount pUserAccount, int pWindow = 0)
+		{
+			try
+			{
+				return this.iMCCore.UpdateInbox(pUserAccount, pWindow);
+			}
+			catch (WellKnownException bException)
+			{
+				throw new UpdateInboxException(Resources.Exceptions.UpdateInboxWellKownException, bException);
+			}
+			catch (UnknownErrorException bException)
+			{
+				throw new UpdateInboxException(Resources.Exceptions.UpdateInboxUnknownErrorException, bException);
+			}
+			catch (Exception bException)
+			{
+				throw new UpdateInboxException(Resources.Exceptions.UpdateInboxException, bException);
 			}
 		}
 	}

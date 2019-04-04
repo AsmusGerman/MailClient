@@ -118,51 +118,30 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="LoginException" xml:space="preserve">
-    <value>Ocurrió un error durante el inicio de sesión. Vea excepción interna.</value>
+    <value>No fue posible acceder a la cuenta de correo. Contacte con soporte técnico.</value>
   </data>
-  <data name="LoginNullOrEmptyArgumentException" xml:space="preserve">
-    <value>Los valores argumentados durante la operación de inicio de sesión no pueden ser nulos.</value>
+  <data name="LoginUnknownErrorException" xml:space="preserve">
+    <value>No fue posible acceder a la cuenta de correo. Algo durante la operación salio mal, intente nuevamente. Si el problema persiste, contacte con soporte técnico.</value>
   </data>
-  <data name="MCCoreIntantiateException" xml:space="preserve">
-    <value>Ocurrió un error durante la instanciación de la aplicación.</value>
+  <data name="LoginWellKnownException" xml:space="preserve">
+    <value>No fue posible acceder a la cuenta de correo. Verifique que los campos ingresados sean correctos e intente nuevamente.</value>
   </data>
   <data name="RegisterException" xml:space="preserve">
-    <value>Ocurrió un error durante el registro de la cuenta de correo. Vea excepción interna.</value>
+    <value>No fue posible registrar la cuenta de correo. Contacte con soporte técnico.</value>
   </data>
-  <data name="SendException" xml:space="preserve">
-    <value>Ocurrió un error durante el proceso de envío de correo. Vea excepción interna.</value>
+  <data name="RegisterUnkownErrorException" xml:space="preserve">
+    <value>No fue posible registrar la cuenta de correo. Algo durante la operación salio mal, intente nuevamente. Si el problema persiste, contacte con soporte técnico.</value>
+  </data>
+  <data name="RegisterWellKnownException" xml:space="preserve">
+    <value>No fue posible registrar la cuenta de correo. Verifique que los campos ingresados sean correctos e intente nuevamente.</value>
   </data>
   <data name="UpdateInboxException" xml:space="preserve">
-    <value>Ocurrió un error durante el proceso de actualización de la casilla de correos. Vea excepción interna.</value>
+    <value>No fue posible actualizar la casilla de correo. Contacte con soporte técnico.</value>
   </data>
-  <data name="UserAccountController_GetUser_FailOnGetUser" xml:space="preserve">
-    <value />
+  <data name="UpdateInboxUnknownErrorException" xml:space="preserve">
+    <value>No fue posible actualizar la casilla de correo. Algo durante la operación salio mal, intente nuevamente. Si el problema persiste, contacte con soporte técnico.</value>
   </data>
-  <data name="UserAccountController_GetUser_NoUserAccountsFound" xml:space="preserve">
-    <value />
-  </data>
-  <data name="UserAccountController_GetUser_UknownMailAccount" xml:space="preserve">
-    <value />
-  </data>
-  <data name="UserAccountController_NewUser_ExistingMailAccount" xml:space="preserve">
-    <value />
-  </data>
-  <data name="UserAccountController_NewUser_FailOnNewUser" xml:space="preserve">
-    <value />
-  </data>
-  <data name="UserAccountController_UknownErrorException" xml:space="preserve">
-    <value />
-  </data>
-  <data name="UserAccount_GetMailService_FailOnGetMailService" xml:space="preserve">
-    <value />
-  </data>
-  <data name="UserAccount_Send_FailOnSend" xml:space="preserve">
-    <value />
-  </data>
-  <data name="UserAccount_UknownErrorException" xml:space="preserve">
-    <value />
-  </data>
-  <data name="UserAccount_UpdateInbox_FailOnUpdateInbox" xml:space="preserve">
-    <value />
+  <data name="UpdateInboxWellKownException" xml:space="preserve">
+    <value>No fue posible actualizar la casilla de correo. Verifique que haya conexión a internet.</value>
   </data>
 </root>

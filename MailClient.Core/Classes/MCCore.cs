@@ -2,18 +2,12 @@
 using MailClient.Shared;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MailClient.Core
 {
     public class MCCore
     {
         private static MCCore iInstance;
-
-        private static readonly string iConfigurationDirectory = Directory.GetCurrentDirectory() + Resources.Files.Folder;
 
         private IMailServiceCollection iMailServiceCollection;
         private IServicedMailAccountService iMailAccountService;
@@ -24,32 +18,26 @@ namespace MailClient.Core
 
         private MCCore()
         {
-            this.LoadConfiguration();
-        }
+			try
+			{
+				//carga de los servicios de correo
+				this.iMailServiceCollection = Serializer.Instance.ReadFromFile<MailServiceCollection>(Resources.Files.Services);
 
-        private void LoadConfiguration()
-        {
-            try
-            {
-                //carga de los servicios de correo
-                this.iMailServiceCollection = Serializer.Instance.ReadFromFile<MailServiceCollection>(MCCore.iConfigurationDirectory + Resources.Files.Services);
-
-                //se resuelven los servicios de la aplicación
-                this.iMailAccountService = ContainerBuilder.Instance.Resolve<IMailAccountService>();
-                this.iAuthenticationService = ContainerBuilder.Instance.Resolve<IAuthenticationService>();
-
-            }
-            catch (Exception bException)
-            {
-                throw;
-            }
-        }
+				//se resuelven los servicios de la aplicación
+				this.iMailAccountService = ContainerBuilder.Instance.Resolve<IMailAccountService>();
+				this.iAuthenticationService = ContainerBuilder.Instance.Resolve<IAuthenticationService>();
+			}
+			catch (Exception bException)
+			{
+				throw new MCCoreInstantiateException(Resources.ExceptionMessages.MCCoreIntantiateException, bException);
+			}
+		}
 
         public static MCCore Instance
         {
             get
             {
-                if (MCCore.iInstance == default(MCCore))
+                if (MCCore.iInstance == null)
                 {
                     MCCore.iInstance = new MCCore();
                 }
@@ -57,20 +45,18 @@ namespace MailClient.Core
             }
         }
 
-
-
         public MailAccount LoginByAlias(string pAlias, string pPassword)
         {
             try
             {
                 if (string.IsNullOrEmpty(pAlias) || string.IsNullOrEmpty(pPassword))
-                    throw new ArgumentNullException("los argumentos no pueden ser nulos");
+                    throw new ArgumentNullException(Resources.ExceptionMessages.LoginNullOrEmptyArgumentException);
 
                 return this.iAuthenticationService.LoginByAlias(pAlias, pPassword);
             }
             catch (Exception bException)
             {
-                throw;
+                throw new LoginException(Resources.ExceptionMessages.LoginException, bException);
             }
         }
 
@@ -79,31 +65,31 @@ namespace MailClient.Core
             try
             {
                 if (string.IsNullOrEmpty(pMailAddress) || string.IsNullOrEmpty(pPassword))
-                    throw new ArgumentNullException("los argumentos no pueden ser nulos");
+					throw new ArgumentNullException(Resources.ExceptionMessages.LoginNullOrEmptyArgumentException);
 
-                return this.iAuthenticationService.LoginByMailAddress(pMailAddress, pPassword);
+				return this.iAuthenticationService.LoginByMailAddress(pMailAddress, pPassword);
             }
             catch (Exception bException)
             {
+				throw new LoginException(Resources.ExceptionMessages.LoginException, bException);
 
-                throw;
-            }
-        }
+			}
+		}
 
         public void Register(string pAlias, string pMailAddress, string pPassword)
         {
             try
             {
                 if (string.IsNullOrEmpty(pAlias) || string.IsNullOrEmpty(pMailAddress) || string.IsNullOrEmpty(pPassword))
-                    throw new ArgumentNullException("los argumentos no pueden ser nulos");
+					throw new ArgumentNullException(Resources.ExceptionMessages.LoginNullOrEmptyArgumentException);
 
-                this.iAuthenticationService.Register(pAlias, pMailAddress, pPassword);
+				this.iAuthenticationService.Register(pAlias, pMailAddress, pPassword);
             }
-            catch (Exception)
+            catch (Exception bException)
             {
-                throw;
-            }
-        }
+				throw new RegisterException(Resources.ExceptionMessages.RegisterException, bException);
+			}
+		}
 
         public IEnumerable<MailMessage> UpdateInbox(MailAccount pMailAccount, int pWindow = 0)
         {
@@ -113,10 +99,10 @@ namespace MailClient.Core
                 MailService mMailService = this.iMailServiceCollection.ResolveByName(MailServiceSelector.ByName(mMailServiceName));
                 return this.iMailAccountService.With(mMailService).Retrieve(pMailAccount, pWindow);
             }
-            catch (Exception)
+            catch (Exception bException)
             {
-                throw;
-            }
+				throw new UpdateInboxException(Resources.ExceptionMessages.UpdateInboxException, bException);
+			}
         }
 
         public void Send(MailAccount pMailAccount, MailMessage pMailMesage)
@@ -127,12 +113,11 @@ namespace MailClient.Core
                 MailService mMailService = this.iMailServiceCollection.ResolveByName(MailServiceSelector.ByName(mMailServiceName));
                 this.iMailAccountService.With(mMailService).Send(pMailAccount, pMailMesage);
             }
-            catch (Exception)
-            {
+			catch (Exception bException)
+			{
+				throw new SendException(Resources.ExceptionMessages.SendException, bException);
+			}
 
-                throw;
-            }
-
-        }
+		}
     }
 }

@@ -61,6 +61,60 @@ namespace MailClient.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ocurrió un error durante el inicio de sesión. Vea excepción interna..
+        /// </summary>
+        internal static string LoginException {
+            get {
+                return ResourceManager.GetString("LoginException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Los valores argumentados durante la operación de inicio de sesión no pueden ser nulos..
+        /// </summary>
+        internal static string LoginNullOrEmptyArgumentException {
+            get {
+                return ResourceManager.GetString("LoginNullOrEmptyArgumentException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ocurrió un error durante la instanciación de la aplicación..
+        /// </summary>
+        internal static string MCCoreIntantiateException {
+            get {
+                return ResourceManager.GetString("MCCoreIntantiateException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ocurrió un error durante el registro de la cuenta de correo. Vea excepción interna..
+        /// </summary>
+        internal static string RegisterException {
+            get {
+                return ResourceManager.GetString("RegisterException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ocurrió un error durante el proceso de envío de correo. Vea excepción interna..
+        /// </summary>
+        internal static string SendException {
+            get {
+                return ResourceManager.GetString("SendException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ocurrió un error durante el proceso de actualización de la casilla de correos. Vea excepción interna..
+        /// </summary>
+        internal static string UpdateInboxException {
+            get {
+                return ResourceManager.GetString("UpdateInboxException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
         internal static string UserAccount_GetMailService_FailOnGetMailService {
