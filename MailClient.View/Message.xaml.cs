@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MailClient.View.Components;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -68,8 +69,6 @@ namespace MailClient.View
 
 		private void HandleException(Exception pException)
 		{
-			this.aErrorMessage.IsOpen = true;
-			this.aErrorMessage.Body = pException.Message;
 		}
 
 		private void Label_MouseDoubleClick(object sender, MouseButtonEventArgs e)

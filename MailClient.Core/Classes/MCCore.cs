@@ -24,8 +24,8 @@ namespace MailClient.Core
 				this.iMailServiceCollection = Serializer.Instance.ReadFromFile<MailServiceCollection>(Resources.Files.Services);
 
 				//se resuelven los servicios de la aplicación
-				this.iMailAccountService = ContainerBuilder.Instance.Resolve<IMailAccountService>();
-				this.iAuthenticationService = ContainerBuilder.Instance.Resolve<IAuthenticationService>();
+				this.iMailAccountService = ContainerBuilder.Resolve<IMailAccountService>();
+				this.iAuthenticationService = ContainerBuilder.Resolve<IAuthenticationService>();
 			}
 			catch (Exception bException)
 			{

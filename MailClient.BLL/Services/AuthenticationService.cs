@@ -11,22 +11,26 @@ namespace MailClient.BLL
     {
         private IEncryptor Encryptor;
 
-        public AuthenticationService(IEncryptor pEncriptor)
-        {
-            this.Encryptor = pEncriptor;
-        }
+		public AuthenticationService()
+		{
+
+		}
+        //public AuthenticationService(IEncryptor pEncriptor)
+        //{
+        //    this.Encryptor = pEncriptor;
+        //}
 
         /// <summary>
         /// obtiene la cuenta correspondiente al alias y a la contraseña
         /// </summary>
-		public bool LoginByAlias(string pAlias, string pPassword)
+		public MailAccount LoginByAlias(string pAlias, string pPassword)
         {
             try
             {
                 //se obtiene el repositorio de las cuentas de correo
                 IRepository mRespository = MCDAL.Instance.MailAccountRepository;
-                //Se obtiene la existencia de la cuenta que corresponde a los argumentos
-                return mRespository.Query(MailAccountSelector.ByAlias(pAlias, pPassword));
+				//Se obtiene la existencia de la cuenta que corresponde a los argumentos
+				return mRespository.Single(MailAccountSelector.ByAlias(pAlias, pPassword));
             }
             catch (Exception bException)
             {
@@ -37,15 +41,14 @@ namespace MailClient.BLL
         /// <summary>
         /// obtiene la cuenta correspondiente al correo y a la contraseña
         /// </summary>
-        public bool LoginByMailAddress(string pMailAddress, string pPassword)
+        public MailAccount LoginByMailAddress(string pMailAddress, string pPassword)
         {
-
             try
             {
                 //se obtiene el repositorio de las cuentas de correo
                 IRepository mRespository = MCDAL.Instance.MailAccountRepository;
                 //Se obtiene la existencia de la cuenta que corresponde a los argumentos
-                return mRespository.Query(MailAccountSelector.ByMailAddress(pMailAddress, pPassword));
+                return mRespository.Single(MailAccountSelector.ByMailAddress(pMailAddress, pPassword));
             }
             catch (Exception bException)
             {

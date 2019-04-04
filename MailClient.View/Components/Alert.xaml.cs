@@ -20,13 +20,19 @@ namespace MailClient.View.Components
 	/// </summary>
 	public partial class Alert : UserControl
 	{
-		public string Title { get; set; }
-		public string Body { get; set; }
-		public bool IsOpen { get; set; }
+		public event EventHandler CloseAlert;
+
+		public String Header { get; set; }
+		public String Body { get; set; }
 
 		public Alert()
 		{
 			InitializeComponent();
+		}
+
+		private void BtnCloseDialog_Click(object sender, RoutedEventArgs e)
+		{
+			this.CloseAlert?.Invoke(this, e);
 		}
 	}
 }

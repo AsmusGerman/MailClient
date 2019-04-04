@@ -16,8 +16,6 @@
 		 Background="{DynamicResource MaterialDesignPaper}"
 		 FontFamily="{DynamicResource MaterialDesignFont}">
 	<Grid>
-		<Components:Alert x:Name="aErrorMessage"/>
-
 		<materialDesign:Card Margin="10" VerticalAlignment="Stretch">
 			<StackPanel VerticalAlignment="Stretch">
 				<materialDesign:ColorZone Mode="PrimaryMid" Effect="{DynamicResource MaterialDesignShadowDepth2}">
@@ -37,7 +35,6 @@
 					</Grid>
 				</materialDesign:ColorZone>
 				<StackPanel Margin="0 5" VerticalAlignment="Stretch">
-
 					<GroupBox Header="Para"  Margin="15 5">
 						<StackPanel>
 							<TextBox x:Name="tbxToMailAddresses" KeyUp="tbxToMailAddresses_KeyUp"></TextBox>
@@ -82,5 +79,10 @@
 				</StackPanel>
 			</StackPanel>
 		</materialDesign:Card>
+		<materialDesign:DialogHost x:Name="AlertDialog" IsOpen="false">
+			<materialDesign:DialogHost.DialogContent>
+				<Components:Alert x:Name="AlertComponent" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+			</materialDesign:DialogHost.DialogContent>
+		</materialDesign:DialogHost>
 	</Grid>
 </Window>

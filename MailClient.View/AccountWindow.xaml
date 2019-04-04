@@ -18,7 +18,6 @@
 			Background="{DynamicResource MaterialDesignPaper}"
 			FontFamily="{DynamicResource MaterialDesignFont}">
 	<Grid>
-		<Components:Alert IsOpen="False"/>
 		<Frame Name="fPageNavigation"/>
 	</Grid>
 </Window>
