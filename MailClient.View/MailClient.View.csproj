@@ -181,12 +181,18 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="Configuration\unity.config" />
+    <Content Include="Configuration\unity.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MailClient.BLL\MailClient.BLL.csproj">
+      <Project>{73850a2c-031a-4a15-b4b1-0acfbb7d2f4b}</Project>
+      <Name>MailClient.BLL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MailClient.Core\MailClient.Core.csproj">
       <Project>{499A47C0-CFBB-4797-A6F4-DA4F93D6A209}</Project>
       <Name>MailClient.Core</Name>
@@ -197,7 +203,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Configuration\Services.xml" />
+    <Content Include="Configuration\Services.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

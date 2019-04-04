@@ -13,8 +13,6 @@ namespace MailClient.Core
     {
         private static MCCore iInstance;
 
-        private static readonly string iConfigurationDirectory = Directory.GetCurrentDirectory() + Resources.Files.Folder;
-
         private IMailServiceCollection iMailServiceCollection;
         private IServicedMailAccountService iMailAccountService;
         private IAuthenticationService iAuthenticationService;
@@ -32,11 +30,11 @@ namespace MailClient.Core
             try
             {
                 //carga de los servicios de correo
-                this.iMailServiceCollection = Serializer.Instance.ReadFromFile<MailServiceCollection>(MCCore.iConfigurationDirectory + Resources.Files.Services);
+                this.iMailServiceCollection = Serializer.Instance.ReadFromFile<MailServiceCollection>(Resources.Files.Folder + Resources.Files.Services);
 
                 //se resuelven los servicios de la aplicación
-                this.iMailAccountService = ContainerBuilder.Instance.Resolve<IMailAccountService>();
-                this.iAuthenticationService = ContainerBuilder.Instance.Resolve<IAuthenticationService>();
+                this.iMailAccountService = ContainerBuilder.Resolve<IMailAccountService>();
+                this.iAuthenticationService = ContainerBuilder.Resolve<IAuthenticationService>();
 
             }
             catch (Exception bException)

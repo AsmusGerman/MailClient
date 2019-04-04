@@ -39,7 +39,7 @@ namespace MailClient.DAL
         /// </summary>
         /// <param name="pSelector">selector (criterio de busqueda) por el cual se filtra la entidad persistida</param>
         /// <returns>instancia de T</returns>
-		public T Single<T>(ISelector <T> pSelector) where T : BaseEntity
+		public T Single<T>(ISelector<T, bool> pSelector) where T : BaseEntity
 		{
             try
             {
@@ -56,7 +56,7 @@ namespace MailClient.DAL
         /// </summary>
         /// <param name="pSelector">selector (criterio de busqueda) por el cual se filtran las entidades persistidas</param>
         /// <returns></returns>
-		public IEnumerable<T> List<T>(ISelector <T> pSelector) where T : BaseEntity
+		public IEnumerable<T> List<T>(ISelector<T, bool> pSelector) where T : BaseEntity
 		{
             try
             {

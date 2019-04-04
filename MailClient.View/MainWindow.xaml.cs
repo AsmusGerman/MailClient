@@ -1,5 +1,6 @@
 ﻿using MailClient.Shared;
 using MailClient.Shared.Exceptions;
+using MailClient.View.Components;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,12 +26,18 @@ namespace MailClient.View
 		public MainWindow()
 		{
 			InitializeComponent();
+			this.AlertComponent.CloseAlert += AlertComponent_CloseAlert;
+		}
+
+		private void AlertComponent_CloseAlert(object sender, EventArgs e)
+		{
+			this.AlertDialog.IsOpen = false;
 		}
 
 		private void HandleException(Exception pException)
 		{
-			this.aErrorMessage.IsOpen = true;
-			this.aErrorMessage.Body = pException.Message;
+			this.AlertDialog.IsOpen = true;
+			this.AlertComponent.Body = pException.Message;
 		}
 
 		private void btnLogin_Click(object sender, RoutedEventArgs e)

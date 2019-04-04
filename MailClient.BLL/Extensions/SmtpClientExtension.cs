@@ -14,7 +14,7 @@ namespace MailClient.BLL
 			}
 			catch (Exception bException)
 			{
-				throw new SmtpClientException(Resources.Exceptions.SendMailException,bException);
+				throw new SmtpClientException("");
 			}
 		}
 	}
