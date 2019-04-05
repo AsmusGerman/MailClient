@@ -34,15 +34,12 @@ namespace MailClient.BLL
 					EnableSsl = this.SSL,
 					UseDefaultCredentials = false,
 					Credentials = mCredential
-				}.SendMail(mMessage);
+				}.Send(mMessage);
 
-			}
-			catch (WellKnownException bException)
-			{
-				throw new FailOnSend(Resources.Exceptions.Smtp_SendMessage_FailOnSend, bException);
 			}
 			catch (Exception bException)
 			{
+				throw new FailOnSend(Resources.Exceptions.Smtp_SendMessage_FailOnSend, bException);
 				throw new UnknownErrorException(Resources.Exceptions.Smtp_SendMessage_UnknownErrorException, bException);
 			}
 

@@ -9,11 +9,9 @@ namespace MailClient.View
 	public class Facade
 	{
 		private static Facade iInstance;
-		private MCCore iMCCore;
 
 		private Facade()
 		{
-			this.iMCCore = MCCore.Instance;
 		}
 
 		/// <summary>
@@ -38,20 +36,11 @@ namespace MailClient.View
 		{
 			try
 			{
-				return this.iMCCore.LoginByAlias(pAlias, pPassword);
-			}
-			catch (WellKnownException bException)
-			{
-				throw new LoginException(Resources.Exceptions.LoginWellKnownException, bException);
-			}
-			catch (UnknownErrorException bException)
-			{
-				throw new LoginException(Resources.Exceptions.LoginUnknownErrorException,
-					bException);
+				return MCCore.Instance.LoginByAlias(pAlias, pPassword);
 			}
 			catch (Exception bException)
 			{
-				throw new LoginException(Resources.Exceptions.LoginException, bException);
+				throw new InternalOperationException(Resources.Exceptions.LoginException, bException);
 			}
 
 		}
@@ -63,20 +52,11 @@ namespace MailClient.View
 		{
 			try
 			{
-				return this.iMCCore.LoginByMailAddress(pMailAddress, pPassword);
-			}
-			catch (WellKnownException bException)
-			{
-				throw new LoginException(Resources.Exceptions.LoginWellKnownException, bException);
-			}
-			catch (UnknownErrorException bException)
-			{
-				throw new LoginException(Resources.Exceptions.LoginUnknownErrorException,
-					bException);
+				return MCCore.Instance.LoginByMailAddress(pMailAddress, pPassword);
 			}
 			catch (Exception bException)
 			{
-				throw new LoginException(Resources.Exceptions.LoginException, bException);
+				throw new InternalOperationException(Resources.Exceptions.LoginException, bException);
 			}
 		}
 
@@ -87,19 +67,11 @@ namespace MailClient.View
 		{
 			try
 			{
-				this.iMCCore.Register(pAlias, pMail, pPassword);
-			}
-			catch (WellKnownException bException)
-			{
-				throw new RegisterException(Resources.Exceptions.RegisterWellKnownException, bException);
-			}
-			catch (UnknownErrorException bException)
-			{
-				throw new RegisterException(Resources.Exceptions.RegisterUnkownErrorException, bException);
+				MCCore.Instance.Register(pAlias, pMail, pPassword);
 			}
 			catch (Exception bException)
 			{
-				throw new RegisterException(Resources.Exceptions.RegisterException, bException);
+				throw new InternalOperationException(Resources.Exceptions.RegisterException, bException);
 			}
 		}
 
@@ -110,19 +82,26 @@ namespace MailClient.View
 		{
 			try
 			{
-				return this.iMCCore.UpdateInbox(pUserAccount, pWindow);
-			}
-			catch (WellKnownException bException)
-			{
-				throw new UpdateInboxException(Resources.Exceptions.UpdateInboxWellKownException, bException);
-			}
-			catch (UnknownErrorException bException)
-			{
-				throw new UpdateInboxException(Resources.Exceptions.UpdateInboxUnknownErrorException, bException);
+				return MCCore.Instance.UpdateInbox(pUserAccount, pWindow);
 			}
 			catch (Exception bException)
 			{
-				throw new UpdateInboxException(Resources.Exceptions.UpdateInboxException, bException);
+				throw new InternalOperationException(Resources.Exceptions.UpdateInboxException, bException);
+			}
+		}
+
+		/// <summary>
+		/// Pide al core que envíe un correo
+		/// </summary>
+		public void Send(MailAccount pUserAccount, MailMessage pMailMessage)
+		{
+			try
+			{
+				MCCore.Instance.Send(pUserAccount, pMailMessage);
+			}
+			catch (Exception bException)
+			{
+				throw new InternalOperationException(Resources.Exceptions.SendException, bException);
 			}
 		}
 	}

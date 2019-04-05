@@ -61,7 +61,7 @@ namespace MailClient.View.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No fue posible acceder a la cuenta de correo. Contacte con soporte técnico..
+        ///   Looks up a localized string similar to No fue posible acceder a la cuenta de correo. Verifique que los campos ingresados sean correctos e intente nuevamente.Si el problema persiste, contacte con soporte técnico..
         /// </summary>
         internal static string LoginException {
             get {
@@ -70,25 +70,7 @@ namespace MailClient.View.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No fue posible acceder a la cuenta de correo. Algo durante la operación salio mal, intente nuevamente. Si el problema persiste, contacte con soporte técnico..
-        /// </summary>
-        internal static string LoginUnknownErrorException {
-            get {
-                return ResourceManager.GetString("LoginUnknownErrorException", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to No fue posible acceder a la cuenta de correo. Verifique que los campos ingresados sean correctos e intente nuevamente..
-        /// </summary>
-        internal static string LoginWellKnownException {
-            get {
-                return ResourceManager.GetString("LoginWellKnownException", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to No fue posible registrar la cuenta de correo. Contacte con soporte técnico..
+        ///   Looks up a localized string similar to No fue posible registrar la cuenta de correo. Verifique que los campos ingresados sean correctos e intente nuevamente. Si el problema persiste, contacte con soporte técnico..
         /// </summary>
         internal static string RegisterException {
             get {
@@ -97,47 +79,20 @@ namespace MailClient.View.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No fue posible registrar la cuenta de correo. Algo durante la operación salio mal, intente nuevamente. Si el problema persiste, contacte con soporte técnico..
+        ///   Looks up a localized string similar to No fue posible enviar el correo. Verifique que haya conexión a internet. Si el problema persiste, contacte con soporte técnico..
         /// </summary>
-        internal static string RegisterUnkownErrorException {
+        internal static string SendException {
             get {
-                return ResourceManager.GetString("RegisterUnkownErrorException", resourceCulture);
+                return ResourceManager.GetString("SendException", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No fue posible registrar la cuenta de correo. Verifique que los campos ingresados sean correctos e intente nuevamente..
-        /// </summary>
-        internal static string RegisterWellKnownException {
-            get {
-                return ResourceManager.GetString("RegisterWellKnownException", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to No fue posible actualizar la casilla de correo. Contacte con soporte técnico..
+        ///   Looks up a localized string similar to No fue posible actualizar la casilla de correo. Verifique que haya conexión a internet. Si el problema persiste, contacte con soporte técnico..
         /// </summary>
         internal static string UpdateInboxException {
             get {
                 return ResourceManager.GetString("UpdateInboxException", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to No fue posible actualizar la casilla de correo. Algo durante la operación salio mal, intente nuevamente. Si el problema persiste, contacte con soporte técnico..
-        /// </summary>
-        internal static string UpdateInboxUnknownErrorException {
-            get {
-                return ResourceManager.GetString("UpdateInboxUnknownErrorException", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to No fue posible actualizar la casilla de correo. Verifique que haya conexión a internet..
-        /// </summary>
-        internal static string UpdateInboxWellKownException {
-            get {
-                return ResourceManager.GetString("UpdateInboxWellKownException", resourceCulture);
             }
         }
     }

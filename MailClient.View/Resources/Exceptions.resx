@@ -118,30 +118,15 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="LoginException" xml:space="preserve">
-    <value>No fue posible acceder a la cuenta de correo. Contacte con soporte técnico.</value>
-  </data>
-  <data name="LoginUnknownErrorException" xml:space="preserve">
-    <value>No fue posible acceder a la cuenta de correo. Algo durante la operación salio mal, intente nuevamente. Si el problema persiste, contacte con soporte técnico.</value>
-  </data>
-  <data name="LoginWellKnownException" xml:space="preserve">
-    <value>No fue posible acceder a la cuenta de correo. Verifique que los campos ingresados sean correctos e intente nuevamente.</value>
+    <value>No fue posible acceder a la cuenta de correo. Verifique que los campos ingresados sean correctos e intente nuevamente.Si el problema persiste, contacte con soporte técnico.</value>
   </data>
   <data name="RegisterException" xml:space="preserve">
-    <value>No fue posible registrar la cuenta de correo. Contacte con soporte técnico.</value>
+    <value>No fue posible registrar la cuenta de correo. Verifique que los campos ingresados sean correctos e intente nuevamente. Si el problema persiste, contacte con soporte técnico.</value>
   </data>
-  <data name="RegisterUnkownErrorException" xml:space="preserve">
-    <value>No fue posible registrar la cuenta de correo. Algo durante la operación salio mal, intente nuevamente. Si el problema persiste, contacte con soporte técnico.</value>
-  </data>
-  <data name="RegisterWellKnownException" xml:space="preserve">
-    <value>No fue posible registrar la cuenta de correo. Verifique que los campos ingresados sean correctos e intente nuevamente.</value>
+  <data name="SendException" xml:space="preserve">
+    <value>No fue posible enviar el correo. Verifique que haya conexión a internet. Si el problema persiste, contacte con soporte técnico.</value>
   </data>
   <data name="UpdateInboxException" xml:space="preserve">
-    <value>No fue posible actualizar la casilla de correo. Contacte con soporte técnico.</value>
-  </data>
-  <data name="UpdateInboxUnknownErrorException" xml:space="preserve">
-    <value>No fue posible actualizar la casilla de correo. Algo durante la operación salio mal, intente nuevamente. Si el problema persiste, contacte con soporte técnico.</value>
-  </data>
-  <data name="UpdateInboxWellKownException" xml:space="preserve">
-    <value>No fue posible actualizar la casilla de correo. Verifique que haya conexión a internet.</value>
+    <value>No fue posible actualizar la casilla de correo. Verifique que haya conexión a internet. Si el problema persiste, contacte con soporte técnico.</value>
   </data>
 </root>

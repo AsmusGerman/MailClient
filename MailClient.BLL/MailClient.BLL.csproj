@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MailClient.BLL</RootNamespace>
     <AssemblyName>MailClient.BLL</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=8.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.8.0.0\lib\net461\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="OpenPop, Version=2.0.6.1120, Culture=neutral, PublicKeyToken=6bdb97f144b7efc8, processorArchitecture=MSIL">
       <HintPath>..\packages\OpenPop.NET.2.0.6.1120\lib\net40\OpenPop.dll</HintPath>
       <Private>True</Private>
@@ -63,6 +68,7 @@
   <ItemGroup>
     <Compile Include="CommunicationProtocols\Pop3.cs" />
     <Compile Include="CommunicationProtocols\Smtp.cs" />
+    <Compile Include="Configuration\BLLProfile.cs" />
     <Compile Include="Encryptors\DPEntryptor.cs" />
     <Compile Include="Encryptors\NullEncryptor.cs" />
     <Compile Include="Exceptions\FailOnAuth.cs" />
@@ -80,8 +86,6 @@
     <Compile Include="Exceptions\SmtpClientException.cs" />
     <Compile Include="Exceptions\UnknownComunicationProtocol.cs" />
     <Compile Include="Extensions\MessageExtension.cs" />
-    <Compile Include="Extensions\Pop3ClientExtension.cs" />
-    <Compile Include="Extensions\SmtpClientExtension.cs" />
     <Compile Include="Selectors\MailServiceSelector.cs" />
     <Compile Include="Services\AuthenticationService.cs" />
     <Compile Include="Exceptions\LoginException.cs" />
