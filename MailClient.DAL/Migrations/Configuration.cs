@@ -19,6 +19,24 @@ namespace MailClient.DAL.Migrations
 
 			//  You can use the DbSet<T>.AddOrUpdate() helper extension method 
 			//  to avoid creating duplicate seed data.
+			//se crea la direccion de correo
+			//MailAddress mMailAddress = new MailAddress
+			//{
+			//	Value = "g@g.com"
+			//};
+
+			////se crea la cuenta de correo
+			//MailAccount mMailAccount = new MailAccount
+			//{
+			//	Alias = "g",
+			//	MailAddress = mMailAddress,
+			//	Password = "1234",
+			//	//Deleted = false,
+			//	//DownloadsFolder = null
+			//};
+
+			//context.Set<MailAccount>().Add(mMailAccount);
+			//context.SaveChanges();
 		}
 	}
 }

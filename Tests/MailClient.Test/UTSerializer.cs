@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using MailClient.Core;
+using MailClient.DAL;
 using MailClient.Shared;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -63,8 +64,8 @@ namespace MailClient.Test
                         }
                     }
                 };
-            Serializer.Instance.WriteToFile(mSerializableObject, mServiceFileName);
-            MailServiceCollection mDeserializedObject = Serializer.Instance.ReadFromFile<MailServiceCollection>(mServiceFileName);
+            Serializer.WriteToFile(mSerializableObject, mServiceFileName);
+            MailServiceCollection mDeserializedObject = Serializer.ReadFromFile<MailServiceCollection>(mServiceFileName);
             Assert.ReferenceEquals(mSerializableObject, mDeserializedObject);
         }
     }

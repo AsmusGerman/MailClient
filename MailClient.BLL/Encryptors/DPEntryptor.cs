@@ -9,6 +9,11 @@ namespace MailClient.BLL
 	{
 		private static readonly byte[] iEntropy = { 6, 0, 7, 1, 5, 9 };
 
+		public DPEntryptor()
+		{
+
+		}
+
 		public string Decrypt(string pString)
 		{
 			try

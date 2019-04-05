@@ -18,6 +18,6 @@
 			Background="{DynamicResource MaterialDesignPaper}"
 			FontFamily="{DynamicResource MaterialDesignFont}">
 	<Grid>
-		<Frame Name="fPageNavigation"/>
+		<Frame Name="FramePageNavigation" NavigationUIVisibility="Hidden"/>
 	</Grid>
 </Window>

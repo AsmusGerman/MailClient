@@ -42,7 +42,6 @@ namespace MailClient.View
 
 		private void btnLogin_Click(object sender, RoutedEventArgs e)
 		{
-			MailAccount mMailAccount;
 			try
 			{
 				if (string.IsNullOrEmpty(this.pwbPassword.Password) ||
@@ -53,13 +52,14 @@ namespace MailClient.View
 					throw new WellKnownException("No se pudo continuar porque existen campos incompletos", bInnerException);
 				}
 
+				MailAccount mMailAccount = null;
 				if (!string.IsNullOrEmpty(this.tbxAlias.Text))
 				{
-					mMailAccount = Facade.LoginByAlias(this.tbxAlias.Text, this.pwbPassword.Password);
+					mMailAccount = Facade.Instance.LoginByAlias(this.tbxAlias.Text, this.pwbPassword.Password);
 				}
 				else
 				{
-					mMailAccount =Facade.LoginByMailAddress(this.tbxMailAddress.Text, this.pwbPassword.Password);
+					mMailAccount = Facade.Instance.LoginByMailAddress(this.tbxMailAddress.Text, this.pwbPassword.Password);
 				}
 
 				new AccountWindow(mMailAccount).Show();
@@ -82,12 +82,12 @@ namespace MailClient.View
 						throw new WellKnownException("No se pudo continuar porque existen campos incompletos", bInnerException);
 					}
 
-				Facade.Register(this.tbxAlias.Text, this.tbxMailAddress.Text, this.pwbPassword.Password);
-		}
+				Facade.Instance.Register(this.tbxAlias.Text, this.tbxMailAddress.Text, this.pwbPassword.Password);
+			}
 			catch (Exception bException)
 			{
 				this.HandleException(bException);
-	}
-}
+			}
+		}
 	}
 }

@@ -49,8 +49,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\EntityFrameworkRepository.cs" />
+    <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Classes\MailServiceCollection.cs" />
-    <Compile Include="Classes\Serializer.cs" />
+    <Compile Include="Classes\InMemoryRespository.cs" />
     <Compile Include="Configurations\MailAttachmentConfiguration.cs" />
     <Compile Include="Configurations\MailAccountConfiguration.cs" />
     <Compile Include="Configurations\MailAddressConfiguration.cs" />
@@ -59,16 +61,18 @@
     <Compile Include="Exceptions\RepositoryOperationException.cs" />
     <Compile Include="Exceptions\DataAccessLayerException.cs" />
     <Compile Include="Exceptions\SavingContextException.cs" />
-    <Compile Include="Interfaces\IDataSet.cs" />
-    <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />
     <Compile Include="Migrations\201902072330131_initial.cs" />
     <Compile Include="Migrations\201902072330131_initial.Designer.cs">
       <DependentUpon>201902072330131_initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201904032326339_01.cs" />
-    <Compile Include="Migrations\201904032326339_01.Designer.cs">
-      <DependentUpon>201904032326339_01.cs</DependentUpon>
+    <Compile Include="Migrations\201904050116282_Migration01.cs" />
+    <Compile Include="Migrations\201904050116282_Migration01.Designer.cs">
+      <DependentUpon>201904050116282_Migration01.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904050357561_Migration02.cs" />
+    <Compile Include="Migrations\201904050357561_Migration02.Designer.cs">
+      <DependentUpon>201904050357561_Migration02.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Resources\Exceptions.Designer.cs">
@@ -78,7 +82,6 @@
     </Compile>
     <Compile Include="Classes\Context.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Classes\Repository.cs" />
     <Compile Include="Classes\UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -97,8 +100,11 @@
     <EmbeddedResource Include="Migrations\201902072330131_initial.resx">
       <DependentUpon>201902072330131_initial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201904032326339_01.resx">
-      <DependentUpon>201904032326339_01.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201904050116282_Migration01.resx">
+      <DependentUpon>201904050116282_Migration01.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904050357561_Migration02.resx">
+      <DependentUpon>201904050357561_Migration02.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Exceptions.resx">
       <Generator>ResXFileCodeGenerator</Generator>

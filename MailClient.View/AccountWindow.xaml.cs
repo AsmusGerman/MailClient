@@ -23,18 +23,13 @@ namespace MailClient.View
 	{
 		private Inbox iInboxPage;
 		private Message iMessagePage;
-		private Configuration iConfigurationPage;
 
 		public AccountWindow(MailAccount pMailAccount)
 		{
 			InitializeComponent();
 
 			this.iInboxPage = new Inbox(pMailAccount);
-			this.iConfigurationPage = new Configuration(pMailAccount);
-		}
-
-		private void NavigateToInboxPage() {
-			this.fPageNavigation.Navigate(this.iInboxPage);
+			this.FramePageNavigation.Navigate(this.iInboxPage);
 		}
 	}
 }

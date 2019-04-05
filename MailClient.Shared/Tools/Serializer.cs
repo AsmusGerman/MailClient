@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Xml.Serialization;
 
-namespace MailClient.DAL
+namespace MailClient.Shared
 {
 	public static class Serializer
 	{

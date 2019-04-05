@@ -18,7 +18,7 @@ namespace MailClient.BLL
 			{
 				int mLastMessageId = pMailAccount.MailAddress.FromMessages.Any() ? pMailAccount.MailAddress.FromMessages.Max(bMessage => bMessage.Id) : 0;
 
-				this.GetCommunicationProtocol<Pop3>()
+				this.GetCommunicationProtocol<Pop3>(pMailAccount.GetMailServiceHost())
 					.Retrieve(pMailAccount.MailAddress.Value, pMailAccount.Password, mLastMessageId, pWindow)
 					.ToList()
 					.ForEach(bMessage =>
@@ -47,7 +47,7 @@ namespace MailClient.BLL
 				pMailAccount.MailAddress.FromMessages.Add(pMailMessage);
 				MCDAL.Instance.Save();
 
-				this.GetCommunicationProtocol<Smtp>().SendMessage(pMailAccount.MailAddress.Value, pMailAccount.Password, pMailMessage);
+				this.GetCommunicationProtocol<Smtp>(pMailAccount.GetMailServiceHost()).SendMessage(pMailAccount.MailAddress.Value, pMailAccount.Password, pMailMessage);
 			}
 			catch (Exception bException)
 			{

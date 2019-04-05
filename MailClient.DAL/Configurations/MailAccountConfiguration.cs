@@ -25,17 +25,16 @@ namespace MailClient.DAL
 
 			Property(bMailAccount => bMailAccount.Password)
 				.HasColumnType("nvarchar")
-				.HasMaxLength(256)
 				.IsRequired();
 
             Property(bMailAccount => bMailAccount.DownloadsFolder)
                 .HasColumnType("nvarchar")
                 .HasMaxLength(256)
-                .IsRequired();
+                .IsOptional();
 
 
             Property(bMailAccount => bMailAccount.Deleted)
-                .IsRequired();
+                .IsOptional();
 
 			HasRequired(bMailAccount => bMailAccount.MailAddress)
 				.WithOptional(bMailAddress => bMailAddress.MailAccount).Map(v=> v.MapKey("MailAdressId"))

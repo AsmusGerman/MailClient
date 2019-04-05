@@ -9,6 +9,7 @@ namespace MailClient.View
 	public partial class Inbox : Page
 	{
 		private MailAccount iUserAccount;
+		private Configuration iConfigurationPage;
 
 		private ObservableCollection<MailMessageVM> iSendedMailMessages;
 		private ObservableCollection<MailMessageVM> iReceivedMailMessages;
@@ -18,11 +19,13 @@ namespace MailClient.View
 		{
 			InitializeComponent();
 
+
+			this.iUserAccount = pMailAccount;
+			this.iConfigurationPage = new Configuration(this.iUserAccount);
+
 			this.iSendedMailMessages = new ObservableCollection<MailMessageVM>();
 			this.iReceivedMailMessages = new ObservableCollection<MailMessageVM>();
 
-
-			this.iUserAccount = pMailAccount;
 			this.tbMailAddress.Text = iUserAccount.MailAddress.Value;
 
 			this.iSendedMailMessages.CollectionChanged += SendedMailMessages_CollectionChanged;
@@ -31,7 +34,7 @@ namespace MailClient.View
 
 		private void UpdateInbox() {
 
-			Facade.UpdateInbox(this.iUserAccount, 1);
+			Facade.Instance.UpdateInbox(this.iUserAccount, 1);
 			IEnumerable<MailMessage> mNewSendedMessages = this.iUserAccount.MailAddress.FromMessages;
 
 			foreach (MailMessage bMessage in mNewSendedMessages)
@@ -66,6 +69,11 @@ namespace MailClient.View
 		{
 			//new Message(this.iUserAccount.MailAddress.Value).Show();
 
+		}
+
+		private void BtnConfiguration_Click(object sender, RoutedEventArgs e)
+		{
+			this.NavigationService.Navigate(this.iConfigurationPage);
 		}
 	}
 }

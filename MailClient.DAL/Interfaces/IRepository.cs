@@ -1,14 +1,17 @@
-﻿using MailClient.Shared;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using MailClient.Shared;
 
-namespace MailClient.DAL
+namespace MailClient.DAL.Interfaces
 {
-    public interface IRepository
-    {
-        T Single<T>(ISelector<T, bool> pSpecification) where T : BaseEntity;
-        IEnumerable<T> List<T>(ISelector<T, bool> pSpecification = null) where T : BaseEntity;
-        T Create<T>(T pEntity) where T : BaseEntity;
-        void Create<T>(IEnumerable<T> pEntities) where T : BaseEntity;
-        void Remove<T>(T pEntity) where T : BaseEntity;
-    }
+	public interface IRepository {
+
+	}
+
+	public interface IRepository<T> : IRepository
+	{
+		void Create(T pEntity);
+		IEnumerable<T> List(ISelector<T, bool> pSelector);
+		void Remove(T pEntity);
+		T Single(ISelector<T, bool> pSelector);
+	}
 }

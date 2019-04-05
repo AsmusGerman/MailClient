@@ -60,6 +60,10 @@
       <Project>{499A47C0-CFBB-4797-A6F4-DA4F93D6A209}</Project>
       <Name>MailClient.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\MailClient.DAL\MailClient.DAL.csproj">
+      <Project>{C6305F39-D845-4956-AA49-D71DD4B8D088}</Project>
+      <Name>MailClient.DAL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\MailClient.Shared\MailClient.Shared.csproj">
       <Project>{692417D2-9A32-4F5E-BD43-05AF3CD0E64C}</Project>
       <Name>MailClient.Shared</Name>
