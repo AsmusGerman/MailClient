@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +21,29 @@ namespace MailClient.View.Components
 	/// </summary>
 	public partial class InboxMenu : UserControl
 	{
-		public InboxMenu()
+        public event EventHandler SendedMailMessages;
+        public event EventHandler ReceivedMailMessages;
+        public event EventHandler DraftMailMessages;
+
+        public InboxMenu()
 		{
 			InitializeComponent();
 		}
-	}
+
+        private void BtnSendedMailMessages_Click(object sender, RoutedEventArgs e)
+        {
+            this.SendedMailMessages?.Invoke(this, e);
+
+        }
+
+        private void BtnReceivedMailMessages_Click(object sender, RoutedEventArgs e)
+        {
+            this.ReceivedMailMessages?.Invoke(this, e);
+        }
+
+        private void BtnDraftMailMessages_Click(object sender, RoutedEventArgs e)
+        {
+            this.DraftMailMessages?.Invoke(this, e);
+        }
+    }
 }

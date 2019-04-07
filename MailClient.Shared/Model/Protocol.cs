@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace MailClient.Shared
 {
 	[Serializable]
-	public class Protocol
+	public class Protocol : IProtocol
 	{
         /// <summary>
         /// nombre del protocolo
@@ -25,5 +25,6 @@ namespace MailClient.Shared
         /// ssl
         /// </summary>
 		public bool SSL { get; set; }
+
 	}
 }

@@ -19,60 +19,31 @@ namespace MailClient.DAL
                 .IsRequired();
 
             Property(bMailMessage => bMailMessage.Body)
-                .HasColumnType("nvarchar")
+                .HasColumnType("ntext")
                 .IsVariableLength()
                 .IsOptional();
 
             Property(bMailMessage => bMailMessage.Subject)
                 .HasColumnType("nvarchar")
-                .HasMaxLength(100)
+                .IsVariableLength()
                 .IsRequired();
 
             Property(bMailMessage => bMailMessage.ExternalId)
                 .HasColumnType("nvarchar")
                 .IsVariableLength()
-                .IsRequired();
-
-            HasIndex(bMailMessage => bMailMessage.ExternalId).IsUnique(true);
+                .IsOptional();
 
             HasRequired(bMailMessage => bMailMessage.From)
-                .WithMany(bMailAddress => bMailAddress.FromMessages)
+                .WithMany()
                 .WillCascadeOnDelete(false);
 
             HasMany(bMailMessage => bMailMessage.To)
                 .WithMany(bMailAddress => bMailAddress.ToMessages)
                 .Map(bConfiguration =>
-            {
-                bConfiguration.MapLeftKey("MailMessageId");
-                bConfiguration.MapRightKey("MailAddressId");
-                bConfiguration.ToTable("MailMessageToMailAddress");
-            });
-
-            HasMany(bMailMessage => bMailMessage.Bcc)
-                .WithMany(bMailAddress => bMailAddress.BccMessages)
-                .Map(bConfiguration =>
-            {
-                bConfiguration.MapLeftKey("MailMessageId");
-                bConfiguration.MapRightKey("MailAddressId");
-                bConfiguration.ToTable("MailMessageBccMailAddress");
-            });
-
-            HasMany(bMailMessage => bMailMessage.Cc)
-                .WithMany(bMailAddress => bMailAddress.CcMessages)
-                .Map(bConfiguration =>
                 {
                     bConfiguration.MapLeftKey("MailMessageId");
                     bConfiguration.MapRightKey("MailAddressId");
-                    bConfiguration.ToTable("MailMessageCcMailAddress");
-                });
-
-            HasMany(bMailMessage => bMailMessage.ReplyTo)
-                .WithMany(bMailAddress => bMailAddress.ReplyToMessages)
-                .Map(bConfiguration =>
-                {
-                    bConfiguration.MapLeftKey("MailMessageId");
-                    bConfiguration.MapRightKey("MailAddressId");
-                    bConfiguration.ToTable("MailMessageReplyToMailAddress");
+                    bConfiguration.ToTable("MailMessageToMailAddress");
                 });
 
             HasMany(bMailMessage => bMailMessage.Tags)

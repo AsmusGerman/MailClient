@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Navigation;
+using ToastNotifications.Messages;
 
 namespace MailClient.View
 {
@@ -22,14 +23,21 @@ namespace MailClient.View
 	public partial class AccountWindow : Window
 	{
 		private Inbox iInboxPage;
-		private Message iMessagePage;
 
 		public AccountWindow(MailAccount pMailAccount)
 		{
 			InitializeComponent();
 
-			this.iInboxPage = new Inbox(pMailAccount);
-			this.FramePageNavigation.Navigate(this.iInboxPage);
+            try
+            {
+                this.iInboxPage = new Inbox(pMailAccount);
+                this.FramePageNavigation.Navigate(this.iInboxPage);
+            }
+            catch (Exception bException)
+            {
+                Facade.Instance.Notifier.ShowError(bException.Message);
+            }
+
 		}
 	}
 }

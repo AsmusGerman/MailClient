@@ -7,8 +7,13 @@ using System.Net.Mail;
 
 namespace MailClient.BLL
 {
-	public class Smtp : Protocol
+	public class Smtp : IProtocol
 	{
+		public string Host { get; set; }
+		public string Name { get; set; }
+		public int Port { get; set; }
+		public bool SSL { get; set; }
+
 		#region public methods
 		/// <summary>
 		/// Envía un correo electrónico
@@ -32,7 +37,7 @@ namespace MailClient.BLL
 					Host = this.Host,
 					Port = this.Port,
 					EnableSsl = this.SSL,
-					UseDefaultCredentials = false,
+					UseDefaultCredentials = true,
 					Credentials = mCredential
 				}.Send(mMessage);
 

@@ -5,7 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MailClient.View"
         mc:Ignorable="d"
-        
 		Title="Mail Client"
 		Height="680" Width="460"
 		WindowState="Maximized"
@@ -82,18 +81,20 @@
 
 					</Grid.ColumnDefinitions>
 
-					<Button x:Name="btnLogin"  Grid.Column="0" Style="{StaticResource MaterialDesignFlatButton}" Margin="15" Click="btnLogin_Click">Ingresar</Button>
-					<Button x:Name="btnRegister"  Grid.Column="1" Style="{StaticResource MaterialDesignFlatButton}" Margin="15" Click="btnRegister_Click">Registrarse</Button>
+					<Button x:Name="btnLogin"  Grid.Column="0" Style="{StaticResource MaterialDesignFlatButton}" Margin="15" Click="BtnLogin_Click">Ingresar</Button>
+					<Button x:Name="btnRegister"  Grid.Column="1" Style="{StaticResource MaterialDesignFlatButton}" Margin="15" Click="BtnRegister_Click">Registrarse</Button>
 
 				</Grid>
 
 
 			</Grid>
 		</materialDesign:Card>
-		<materialDesign:DialogHost x:Name="AlertDialog" IsOpen="false">
-			<materialDesign:DialogHost.DialogContent>
-				<Components:Alert x:Name="AlertComponent" HorizontalAlignment="Center" VerticalAlignment="Center" Body=""/>
-			</materialDesign:DialogHost.DialogContent>
-		</materialDesign:DialogHost>
+        <ProgressBar
+            x:Name="iSpinner"
+            Style="{StaticResource MaterialDesignCircularProgressBar}"
+            Value="0"
+            Width="100"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"/>
 	</Grid>
 </Window>

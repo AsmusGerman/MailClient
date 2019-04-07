@@ -4,7 +4,6 @@ using MailClient.DAL;
 using MailClient.DAL.Interfaces;
 using MailClient.Shared;
 using System;
-using System.Linq;
 
 namespace MailClient.BLL
 {
@@ -31,7 +30,10 @@ namespace MailClient.BLL
 				if (this.Encryptor.Decrypt(mMailAccount.Password) != pPassword)
 					throw new LoginException();
 
-				return mMailAccount;
+                if (mMailAccount.Deleted)
+                    throw new LoginException();
+
+                return mMailAccount;
 			}
 			catch (Exception bException)
 			{
@@ -53,7 +55,10 @@ namespace MailClient.BLL
 				if (this.Encryptor.Decrypt(mMailAccount.Password) != pPassword)
 					throw new LoginException();
 
-				return mMailAccount;
+                if (mMailAccount.Deleted)
+                    throw new LoginException();
+
+                return mMailAccount;
 			}
 			catch (Exception bException)
 			{
@@ -98,5 +103,10 @@ namespace MailClient.BLL
 			}
 
 		}
-	}
+
+        public void UpdateAccount()
+        {
+            MCDAL.Instance.Save();
+        }
+    }
 }

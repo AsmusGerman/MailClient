@@ -20,7 +20,6 @@ namespace MailClient.DAL
 
 			Property(bMailAccount => bMailAccount.Alias)
 				.HasColumnType("nvarchar")
-				.HasMaxLength(256)
 				.IsRequired();
 
 			Property(bMailAccount => bMailAccount.Password)
@@ -29,7 +28,6 @@ namespace MailClient.DAL
 
             Property(bMailAccount => bMailAccount.DownloadsFolder)
                 .HasColumnType("nvarchar")
-                .HasMaxLength(256)
                 .IsOptional();
 
 

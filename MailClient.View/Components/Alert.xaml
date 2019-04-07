@@ -15,7 +15,7 @@
 	<StackPanel Margin="16">
 		<StackPanel Margin="16">
 			<materialDesign:PackIcon Kind="AccountAlert" HorizontalAlignment="Center" Margin="15" Width="32" Height="32" Foreground="Orange"/>
-			<TextBlock x:Name="tbExceptionTitle" Style="{StaticResource MaterialDesignTitleTextBlock}" HorizontalAlignment="Center" TextWrapping="Wrap" Margin="5" Text="{Binding Header}">Al parecer, ocurrió un problema...</TextBlock>
+			<TextBlock x:Name="tbExceptionTitle" Style="{StaticResource MaterialDesignTitleTextBlock}" HorizontalAlignment="Center" TextWrapping="Wrap" Margin="5">Al parecer, ocurrió un problema...</TextBlock>
 			<TextBlock x:Name="tbExceptionBody" Style="{StaticResource MaterialDesignBody2TextBlock}" HorizontalAlignment="Center" TextWrapping="Wrap"  Margin="5" Text="{Binding Body}"/>
 		</StackPanel>
 		<StackPanel>

@@ -22,7 +22,6 @@ namespace MailClient.View.Components
 	{
 		public event EventHandler CloseAlert;
 
-		public String Header { get; set; }
 		public String Body { get; set; }
 
 		public Alert()

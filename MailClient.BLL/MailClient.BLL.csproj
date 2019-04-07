@@ -68,7 +68,6 @@
   <ItemGroup>
     <Compile Include="CommunicationProtocols\Pop3.cs" />
     <Compile Include="CommunicationProtocols\Smtp.cs" />
-    <Compile Include="Configuration\BLLProfile.cs" />
     <Compile Include="Encryptors\DPEntryptor.cs" />
     <Compile Include="Encryptors\NullEncryptor.cs" />
     <Compile Include="Exceptions\FailOnAuth.cs" />
@@ -85,7 +84,7 @@
     <Compile Include="Exceptions\RegisterException.cs" />
     <Compile Include="Exceptions\SmtpClientException.cs" />
     <Compile Include="Exceptions\UnknownComunicationProtocol.cs" />
-    <Compile Include="Extensions\MessageExtension.cs" />
+    <Compile Include="Selectors\MailAddressSelector.cs" />
     <Compile Include="Selectors\MailServiceSelector.cs" />
     <Compile Include="Services\AuthenticationService.cs" />
     <Compile Include="Exceptions\LoginException.cs" />

@@ -5,22 +5,17 @@ namespace MailClient.Shared
 {
 	public class MailMessage : BaseEntity
 	{
+
+        public MailMessage()
+        {
+            this.To = new HashSet<MailAddress>();
+            this.Attachments = new HashSet<Attachment>();
+            this.Tags = new HashSet<Tag>();
+        }
 		/// <summary>
 		/// Correos electronicos a los que se envió
 		/// </summary>
 		public virtual ICollection<MailAddress> To { get; set; }
-		/// <summary>
-		/// Correos electronicos a los que se envió con copia oculta
-		/// </summary>
-		public virtual ICollection<MailAddress> Bcc { get; set; }
-		/// <summary>
-		/// Correos electronicos a los que se envió con copia 
-		/// </summary>
-		public virtual ICollection<MailAddress> Cc { get; set; }
-		/// <summary>
-		/// Correos electronicos a los que se responder conjunto con el remitente
-		/// </summary>
-		public virtual ICollection<MailAddress> ReplyTo { get; set; }
 		/// <summary>
 		/// Adjuntos
 		/// </summary>

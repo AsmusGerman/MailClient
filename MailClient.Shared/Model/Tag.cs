@@ -13,5 +13,10 @@ namespace MailClient.Shared
 		/// Mensajes asociados al tag
 		/// </summary>
 		public virtual ICollection<MailMessage> Messages { get; set; }
+
+        public Tag()
+        {
+            this.Messages = new HashSet<MailMessage>();
+        }
 	}
 }

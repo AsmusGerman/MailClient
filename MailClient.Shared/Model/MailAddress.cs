@@ -24,17 +24,11 @@ namespace MailClient.Shared
 		/// Mensajes para los cuales forma parte como remitente
 		/// </summary>
 		public virtual ICollection<MailMessage> FromMessages { get; set; }
-		/// <summary>
-		/// Mensajes para los cuales forma parte como destinatario (en copia oculta)
-		/// </summary>
-		public virtual ICollection<MailMessage> BccMessages { get; set; }
-		/// <summary>
-		/// Mensajes para los cuales forma parte como destinatario (en copia)
-		/// </summary>
-		public virtual ICollection<MailMessage> CcMessages { get; set; }
-		/// <summary>
-		/// Mensajes para los cuales forma parte como direcciones a la cual se debe responder
-		/// </summary>
-		public virtual ICollection<MailMessage> ReplyToMessages { get; set; }
-	}
+
+        public MailAddress()
+        {
+            this.ToMessages = new HashSet<MailMessage>();
+            this.FromMessages = new HashSet<MailMessage>();
+        }
+    }
 }

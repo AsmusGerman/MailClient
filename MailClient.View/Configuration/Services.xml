@@ -35,5 +35,22 @@
         </Protocol>
       </Protocols>
     </MailService>
+      <MailService>
+      <Name>outlook</Name>
+      <Protocols>
+        <Protocol>
+          <Name>smtp</Name>
+          <Host>outlook.office365.com</Host>
+          <Port>587</Port>
+          <SSL>true</SSL>
+        </Protocol>
+        <Protocol>
+          <Name>pop3</Name>
+          <Host>outlook.office365.com</Host>
+          <Port>995</Port>
+          <SSL>true</SSL>
+        </Protocol>
+      </Protocols>
+    </MailService>
   </MailServices>
 </MailServiceCollection>

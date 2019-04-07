@@ -26,24 +26,6 @@
 		<WrapPanel>
 		<ToolBarTray IsLocked="True">
 
-				<ToolBar  Style="{DynamicResource MaterialDesignToolBar}">
-					<Button Command="ApplicationCommands.Cut" ToolTip="Cut" Style="{StaticResource MaterialDesignToolForegroundButton}">
-						<materialDesign:PackIcon Kind="ContentCut" />
-					</Button>
-					<Button Command="ApplicationCommands.Copy" ToolTip="Copy" Style="{StaticResource MaterialDesignToolForegroundButton}">
-						<materialDesign:PackIcon Kind="ContentCopy" />
-					</Button>
-					<Button Command="ApplicationCommands.Paste" ToolTip="Paste" Style="{StaticResource MaterialDesignToolForegroundButton}">
-						<materialDesign:PackIcon Kind="ContentPaste" />
-					</Button>
-					<Separator/>
-					<Button Command="ApplicationCommands.Undo" ToolTip="Undo"  Style="{StaticResource MaterialDesignToolForegroundButton}">
-						<materialDesign:PackIcon Kind="Undo" />
-					</Button>
-					<Button Command="ApplicationCommands.Redo" ToolTip="Redo"  Style="{StaticResource MaterialDesignToolForegroundButton}">
-						<materialDesign:PackIcon Kind="Redo" />
-					</Button>
-				</ToolBar>
 				<ToolBar Style="{DynamicResource MaterialDesignToolBar}">
 					<Button Command="EditingCommands.ToggleBold" ToolTip="Bold"  Style="{StaticResource MaterialDesignToolForegroundButton}">
 					<materialDesign:PackIcon Kind="FormatBold" />

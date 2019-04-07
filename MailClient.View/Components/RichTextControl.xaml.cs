@@ -25,5 +25,13 @@ namespace MailClient.View.Components
 		{
 			InitializeComponent();
 		}
+
+		public string Text
+		{
+			get
+			{
+				return new TextRange(this.richTextBox.Document.ContentStart, this.richTextBox.Document.ContentEnd).Text;
+			}
+		}
 	}
 }

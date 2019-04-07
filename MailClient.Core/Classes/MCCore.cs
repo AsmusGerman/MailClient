@@ -2,6 +2,7 @@
 using MailClient.Shared;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace MailClient.Core
 {
@@ -56,6 +57,18 @@ namespace MailClient.Core
             }
         }
 
+        public void UpdateAccount()
+        {
+            try
+            {
+                this.iAuthenticationService.UpdateAccount();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public MailAccount LoginByMailAddress(string pMailAddress, string pPassword)
         {
             try
@@ -87,11 +100,11 @@ namespace MailClient.Core
 			}
 		}
 
-        public IEnumerable<MailMessage> UpdateInbox(MailAccount pMailAccount, int pWindow = 0)
+        public void UpdateInbox(MailAccount pMailAccount, int pWindow = 0)
         {
             try
             {
-                return this.iMailAccountService.Retrieve(pMailAccount, pWindow);
+                this.iMailAccountService.Retrieve(pMailAccount, pWindow);
             }
             catch (Exception bException)
             {

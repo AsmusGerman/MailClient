@@ -7,13 +7,13 @@ namespace MailClient.DAL.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class Migration01 : IMigrationMetadata
+    public sealed partial class InitialMigration05 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Migration01));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialMigration05));
         
         string IMigrationMetadata.Id
         {
-            get { return "201904050116282_Migration01"; }
+            get { return "201904070811336_InitialMigration05"; }
         }
         
         string IMigrationMetadata.Source

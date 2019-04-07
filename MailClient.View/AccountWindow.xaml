@@ -3,14 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:MailClient.View"
-        mc:Ignorable="d"
-        Title="AccountWindow" Height="300" Width="300"
-
- xmlns:Components="clr-namespace:MailClient.View.Components"
-
-			xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-			TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+		mc:Ignorable="d"
+		Title="AccountWindow" Height="700" Width="500"
+		WindowState="Maximized"
+        
+		TextElement.Foreground="{DynamicResource MaterialDesignBody}"
 			TextElement.FontWeight="Regular"
 			TextElement.FontSize="12"
 			TextOptions.TextFormattingMode="Ideal"

@@ -7,22 +7,21 @@ namespace MailClient.DAL
 {
 	internal class MailAddressConfiguration : EntityTypeConfiguration<MailAddress>
 	{
-		internal MailAddressConfiguration()
-		{
-			ToTable("MailAddress");
+        internal MailAddressConfiguration()
+        {
+            ToTable("MailAddress");
 
-			HasKey(bMailAddress => bMailAddress.Id)
-				.Property(x => x.Id)
-				.HasColumnName("MailAddressId")
-				.HasColumnType("int")
-				.HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            HasKey(bMailAddress => bMailAddress.Id)
+                .Property(x => x.Id)
+                .HasColumnName("MailAddressId")
+                .HasColumnType("int")
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
-			Property(bMailAddress => bMailAddress.Value)
-				.HasColumnType("nvarchar")
-				.IsVariableLength()
-				.IsRequired();
+            Property(bMailAddress => bMailAddress.Value)
+                .HasColumnType("nvarchar")
+                .IsRequired();
 
-			HasIndex(bMailAddress => bMailAddress.Value).IsUnique(true);
-		}
+            HasIndex(bMailAddress => bMailAddress.Value).IsUnique(true);
+        }
 	}
 }

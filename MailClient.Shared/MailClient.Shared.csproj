@@ -44,8 +44,10 @@
     <Compile Include="Exceptions\CastOperationException.cs" />
     <Compile Include="Interfaces\IEncryptor.cs" />
     <Compile Include="Model\BaseEntity.cs" />
+    <Compile Include="Interfaces\IProtocol.cs" />
     <Compile Include="Model\MailAddress.cs" />
     <Compile Include="Model\Attachment.cs" />
+    <Compile Include="Model\MailMessageMailAddress.cs" />
     <Compile Include="Model\MailService.cs" />
     <Compile Include="Model\Protocol.cs" />
     <Compile Include="Model\Tag.cs" />
