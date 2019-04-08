@@ -62,34 +62,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Container\ContainerBuilder.cs" />
-    <Compile Include="Exceptions\ExistingMailAccount.cs" />
-    <Compile Include="Exceptions\FailOnGetMailService.cs" />
-    <Compile Include="Exceptions\FailOnUpdateInbox.cs" />
-    <Compile Include="Exceptions\FailOnGetUser.cs" />
-    <Compile Include="Exceptions\LoginException.cs" />
-    <Compile Include="Exceptions\MCCoreInstantiateException.cs" />
-    <Compile Include="Exceptions\RegisterException.cs" />
-    <Compile Include="Exceptions\SendException.cs" />
-    <Compile Include="Exceptions\UnknownMailAccount.cs" />
-    <Compile Include="Exceptions\NoUserAccountsFound.cs" />
-    <Compile Include="Exceptions\FailOnNewUser.cs" />
-    <Compile Include="Exceptions\UpdateInboxException.cs" />
+    <Compile Include="Classes\AbstractServiceCommand.cs" />
     <Compile Include="Interfaces\IAuthenticationService.cs" />
     <Compile Include="Interfaces\IMailAccountService.cs" />
-    <Compile Include="Classes\MCCore.cs" />
+    <Compile Include="Interfaces\IServiceCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resources\ExceptionMessages.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ExceptionMessages.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\Files.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Files.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Selectors\MailServiceSelector.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MailClient.DAL\MailClient.DAL.csproj">
@@ -103,17 +80,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="Configuration\unity.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\ExceptionMessages.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>ExceptionMessages.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Files.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Files.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
+    <Content Include="Configuration\Services.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

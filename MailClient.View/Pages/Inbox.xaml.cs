@@ -39,15 +39,15 @@ namespace MailClient.View
             this.iConfigurationPage = new Configuration(this.iUserAccount);
             this.iDataGridItemsSource = new ObservableCollection<MailMessage>();
             this.tbMailAddress.Text = iUserAccount.MailAddress.Value;
-            await this.UpdateInbox();
+            await this.UpdateInbox(this.iPageSize);
         }
 
-        private async Task UpdateInbox()
+        private async Task UpdateInbox(int pPageSize)
         {
             try
             {
                 this.iSpinner.IsIndeterminate = true;
-                await Facade.Instance.UpdateInbox(this.iUserAccount, this.iPageSize);
+                await Facade.Instance.UpdateInbox(this.iUserAccount, pPageSize);
                 Facade.Instance.Notifier.ShowSuccess("Casilla de correo actualizada");
             }
             catch (Exception bException)
@@ -63,7 +63,7 @@ namespace MailClient.View
 
         private async void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
-            await this.UpdateInbox();
+            await this.UpdateInbox(-1);
             this.InboxMenu_SendedMailMessages(sender, e);
         }
 
@@ -120,7 +120,7 @@ namespace MailClient.View
                     if (bMailMessage == null)
                         throw new Exception();
 
-                    this.NavigationService.Navigate(new ViewMessage(bMailMessage));
+                    this.NavigationService.Navigate(new ViewMessage(this.iUserAccount, bMailMessage));
                 }
             }
             catch (Exception bException)
@@ -174,6 +174,12 @@ namespace MailClient.View
                 var value = bProperty.GetValue(pTarget);
                 return value != null && value.ToString().Contains(pQuery);
             });
+        }
+
+        private async void btnUpdateTen_Click(object sender, RoutedEventArgs e)
+        {
+            await this.UpdateInbox(this.iPageSize);
+            this.InboxMenu_SendedMailMessages(sender, e);
         }
     }
 }

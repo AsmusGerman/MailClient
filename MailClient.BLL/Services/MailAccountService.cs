@@ -3,32 +3,45 @@ using System.Collections.Generic;
 using System.Linq;
 using MailClient.Shared;
 using MailClient.DAL;
-using MailClient.Core;
 using MailClient.BLL.Selectors;
+using MailClient.Shared.Extensions;
+using MailClient.Core;
 
 namespace MailClient.BLL
 {
     public class MailAccountService : IMailAccountService
     {
-        private IEncryptor Encryptor { get; set; }
+        private IEncryptor iEncryptor;
+        private IRepository<MailAddress> iMailAddressRepository;
+        private IRepository<MailService> iMailServiceRepository;
 
         public MailAccountService()
         {
-            this.Encryptor = new DPEntryptor();
+            this.iEncryptor = new DPEntryptor();
+            this.iMailAddressRepository = MCDAL.Instance.GetRepository<MailAddress>();
+            this.iMailServiceRepository = MCDAL.Instance.GetRepository<MailService>();
         }
 
         public void Retrieve(MailAccount pMailAccount, int pWindow = 0)
         {
             try
             {
+                //se obtiene el útlimo id para obtener los siguientes
+                int mLastMessageId = 
+                    pMailAccount.MailAddress.FromMessages.Any() 
+                    && pMailAccount.MailAddress.ToMessages.Any() 
+                        ? pMailAccount.MailAddress.FromMessages.Union(pMailAccount.MailAddress.ToMessages).Count() 
+                        : 0;
 
-                int mLastMessageId = pMailAccount.MailAddress.FromMessages.Any() && pMailAccount.MailAddress.ToMessages.Any() ?
-                    pMailAccount.MailAddress.FromMessages.Union(pMailAccount.MailAddress.ToMessages).Max(bMessage => bMessage.Id) : 0;
-
-                IEnumerable<MailMessage> mMailMessages = this.GetCommunicationProtocol<Pop3>(pMailAccount.GetMailServiceHost())
-                    .Retrieve(pMailAccount.MailAddress.Value, this.Encryptor.Decrypt(pMailAccount.Password), mLastMessageId, pWindow)
-                    .Select(bMailMessage => this.ProjectToMailMessage(bMailMessage)).ToList();
-
+                //se obtienen los correos
+                IEnumerable<MailMessage> mMailMessages = 
+                    this.GetCommunicationProtocol<Pop3>(pMailAccount.GetMailServiceHost())
+                        .Retrieve(pMailAccount.MailAddress.Value, 
+                                    this.iEncryptor.Decrypt(pMailAccount.Password),
+                                    mLastMessageId,
+                                    pWindow)
+                        .Select(bMailMessage => bMailMessage.ToMailClientMailMessage())
+                        .ToList();
 
                 //para los mensajes que tienen como remitente el correo del usuario
                 // y que no existan en la bbdd
@@ -37,7 +50,6 @@ namespace MailClient.BLL
                         .Where(bMessage => bMessage.From.Value.Equals(pMailAccount.MailAddress.Value))
                         .Where(bMessage => !pMailAccount.MailAddress.FromMessages.Any(bSendedMessage => bSendedMessage.ExternalId == bMessage.ExternalId));
 
-                var existings = new List<MailAddress>();
                 //se agrega cada mensaje a la bbdd
                 foreach (MailMessage bMailMessage in mFromListMessage)
                 {
@@ -46,7 +58,6 @@ namespace MailClient.BLL
                     pMailAccount.MailAddress.FromMessages.Add(bMailMessage);
                     MCDAL.Instance.Save();
                 }
-
 
                 //para los mensajes que no tienen como remitente el correo del usuario
                 IEnumerable<MailMessage> mRecivedMailMessages =
@@ -58,7 +69,7 @@ namespace MailClient.BLL
                 //se agrega cada mensaje a la bbdd
                 foreach (MailMessage bMailMessage in mRecivedMailMessages)
                 {
-                    bMailMessage.From = MCDAL.Instance.MailAddressRepository.Single(MailAddressSelector.ByMailAddress(bMailMessage.From.Value)) ?? bMailMessage.From;
+                    bMailMessage.From = this.iMailAddressRepository.Single(MailAddressSelector.ByMailAddress(bMailMessage.From.Value)) ?? bMailMessage.From;
                     bMailMessage.To = this.ResolveDbMailAddresses(bMailMessage.To).ToList();
                     pMailAccount.MailAddress.ToMessages.Add(bMailMessage);
                     MCDAL.Instance.Save();
@@ -78,23 +89,11 @@ namespace MailClient.BLL
                 pMailMessage.From = pMailAccount.MailAddress;
                 //guardar el mensaje en el repositorio
                 pMailAccount.MailAddress.FromMessages.Add(pMailMessage);
-
-                var existings = new List<MailAddress>();
-                foreach (var item in pMailMessage.To)
-                {
-                    var x  = MCDAL.Instance.MailAddressRepository.Single(MailAddressSelector.ByMailAddress(item.Value));
-                    if(x!=null)
-                    {
-                        existings.Add(x);
-                    }
-                }
-                pMailMessage.To = pMailMessage.To.Where(bMailAddress => !existings.Any(bexistingMailAddress => bexistingMailAddress.Value == bMailAddress.Value)).ToList();
-                existings.ForEach(be => pMailMessage.To.Add(be));
-
+                pMailMessage.To = this.ResolveDbMailAddresses(pMailMessage.To).ToList();
                 MCDAL.Instance.Save();
 
                 this.GetCommunicationProtocol<Smtp>(pMailAccount.GetMailServiceHost())
-                    .SendMessage(pMailAccount.MailAddress.Value, this.Encryptor.Decrypt(pMailAccount.Password), pMailMessage);
+                    .SendMessage(pMailAccount.MailAddress.Value, this.iEncryptor.Decrypt(pMailAccount.Password), pMailMessage);
             }
             catch (Exception bException)
             {
@@ -108,7 +107,7 @@ namespace MailClient.BLL
 
             string mName = typeof(T).Name.ToLower();
 
-            MailService mMailService = MCDAL.Instance.MailServiceRepository.Single(MailServiceSelector.ByName(pMailServiceName));
+            MailService mMailService = this.iMailServiceRepository.Single(MailServiceSelector.ByName(pMailServiceName));
 
             if (mMailService.Protocols.Any(bProtocol => bProtocol.Name.ToLower() == mName))
             {
@@ -125,23 +124,11 @@ namespace MailClient.BLL
             throw new UnknownComunicationProtocol(Resources.Exceptions.MailService_GetCommunicationProtocol_UnknownComunicationProtocol + mName);
         }
 
-        private MailMessage ProjectToMailMessage(System.Net.Mail.MailMessage pMessage)
-        {
-            return new MailMessage()
-            {
-                ExternalId = pMessage.Headers["ExternalId"],
-                Body = pMessage.Body ?? default(string),
-                Subject = pMessage.Subject ?? default(string),
-                From = new MailAddress() { Value = pMessage.From.Address },
-                To = pMessage.To.Select(bMessage => new MailAddress() { Value = bMessage.Address }).ToList()
-            };
-        }
-
         private IEnumerable<MailAddress> ResolveDbMailAddresses(IEnumerable<MailAddress> pSource)
         {
             IEnumerable<MailAddress> mDbMailAddresses =
                 pSource.Select(bMailAddress =>
-                                MCDAL.Instance.MailAddressRepository.Single(MailAddressSelector.ByMailAddress(bMailAddress.Value)))
+                                this.iMailAddressRepository.Single(MailAddressSelector.ByMailAddress(bMailAddress.Value)))
                         .Where(bMailAddress => bMailAddress != null)
                         .ToList();
 

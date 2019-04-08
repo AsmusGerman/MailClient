@@ -25,7 +25,7 @@ namespace MailClient.BLL
                 mPop3Client.Connect(this.Host, this.Port, this.SSL);
                 mPop3Client.Authenticate(pMailAddress, pPassword);
 
-                if (pWindow > mPop3Client.GetMessageCount())
+                if (pWindow > mPop3Client.GetMessageCount() || pWindow == -1)
                 {
                     pWindow = mPop3Client.GetMessageCount();
                 }

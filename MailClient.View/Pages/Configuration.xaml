@@ -76,47 +76,16 @@
 
             </Grid>
 		</GroupBox>
-		<GroupBox Grid.Row="1" Header="Otros" Padding="5" HorizontalAlignment="Center">
+		<GroupBox Grid.Row="1" Header="Otros" Padding="5">
 			<Grid>
-				<Grid.RowDefinitions>
-					<RowDefinition Height="auto" />
-					<RowDefinition Height="auto" />
-					<RowDefinition Height="auto" />
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
 				</Grid.RowDefinitions>
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="*" />
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
 
-				</Grid.ColumnDefinitions>
-
-				<Grid Grid.Row="0"  Grid.Column="0"  Margin="15" IsEnabled="False">
-					<Grid.RowDefinitions>
-						<RowDefinition Height="auto" />
-					</Grid.RowDefinitions>
-					<Grid.ColumnDefinitions>
-						<ColumnDefinition Width="auto" />
-						<ColumnDefinition Width="*" />
-					</Grid.ColumnDefinitions>
-
-					<Label VerticalAlignment="Center" Grid.Column="0">Tema:</Label>
-					<ComboBox Name="cbThemes" VerticalAlignment="Center" Grid.Column="1"></ComboBox>
-				</Grid>
-				<Grid Grid.Row="1"  Grid.Column="0"  Margin="15" IsEnabled="False">
-					<Grid.RowDefinitions>
-						<RowDefinition Height="auto" />
-					</Grid.RowDefinitions>
-					<Grid.ColumnDefinitions>
-						<ColumnDefinition Width="auto" />
-						<ColumnDefinition Width="*" />
-						<ColumnDefinition Width="auto" />
-					</Grid.ColumnDefinitions>
-
-					<Label VerticalAlignment="Center" Grid.Column="0">Directorio de descarga: </Label>
-					<Label VerticalAlignment="Center" Grid.Column="1"></Label>
-					<Button VerticalAlignment="Center" Grid.Column="2" Style="{StaticResource MaterialDesignFlatButton}">
-						<materialDesign:PackIcon Kind="Folder"/>
-					</Button>
-				</Grid>
-				<Grid Grid.Row="2"  Grid.Column="0"  Margin="15">
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Row="2"  Grid.Column="0"  Margin="15">
 					<Grid.RowDefinitions>
 						<RowDefinition Height="auto" />
 					</Grid.RowDefinitions>
@@ -124,7 +93,7 @@
 						<ColumnDefinition Width="*" />
 					</Grid.ColumnDefinitions>
 
-					<Button x:Name="btnDeleteAccount" VerticalAlignment="Center" Grid.Column="2" Click="BtnDeleteAccount_Click" Background="Firebrick" Foreground="White" Style="{StaticResource MaterialDesignFlatButton}">
+					<Button x:Name="btnDeleteAccount" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Click="BtnDeleteAccount_Click" Background="Firebrick" Foreground="White" Style="{StaticResource MaterialDesignFlatButton}">
 						<StackPanel Orientation="Horizontal">
 							<TextBlock>Eliminar cuenta</TextBlock>
 							<materialDesign:PackIcon Kind="Delete" />

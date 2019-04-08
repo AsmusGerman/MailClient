@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using MailClient.Shared;
 
-namespace MailClient.DAL.Interfaces
+namespace MailClient.Shared
 {
 	public interface IRepository {
 

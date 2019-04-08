@@ -17,15 +17,12 @@
 		<ToolBarTray Orientation="Vertical" IsLocked="True">
 			<ToolBar Style="{DynamicResource MaterialDesignToolBar}" ClipToBounds="False">
 				<Button x:Name="btnSendedMailMessages" ToolTip="Enviados" Click="BtnSendedMailMessages_Click">
-					<materialDesign:PackIcon Kind="InboxArrowDown" />
+                    <materialDesign:PackIcon Kind="InboxArrowUp" />
 				</Button>
-				<Button x:Name="btnReceivedMailMessages" ToolTip="Recibidos" Click="BtnReceivedMailMessages_Click">
-					<materialDesign:PackIcon Kind="InboxArrowUp" />
-				</Button>
-				<Button x:Name="btnDraftMailMessages" ToolTip="Borradores" Click="BtnDraftMailMessages_Click">
-					<materialDesign:PackIcon Kind="Archive" />
-				</Button>
-			</ToolBar>
+                <Button x:Name="btnReceivedMailMessages" ToolTip="Recibidos" Click="BtnReceivedMailMessages_Click">
+                    <materialDesign:PackIcon Kind="InboxArrowDown" />
+                </Button>
+            </ToolBar>
 		</ToolBarTray>
 	</Grid>
 </UserControl>

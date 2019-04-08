@@ -51,7 +51,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\EntityFrameworkRepository.cs" />
-    <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Classes\MailServiceCollection.cs" />
     <Compile Include="Classes\InMemoryRespository.cs" />
     <Compile Include="Configurations\MailAttachmentConfiguration.cs" />

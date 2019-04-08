@@ -1,26 +1,24 @@
 ﻿using MailClient.DAL.Exceptions;
-using MailClient.DAL.Interfaces;
 using MailClient.Shared;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 
 namespace MailClient.DAL
 {
 	public class UnitOfWork : IUnitOfWork
 	{
 		private readonly Context iContext = new Context();
-		private readonly IDictionary<Type, IRepository> iRepositories;
+		private readonly IDictionary<string, IRepository> iRepositories;
 		public UnitOfWork()
 		{
-			this.iRepositories = new Dictionary<Type, IRepository>();
-			this.iRepositories.Add(typeof(MailAccount), new EntityFrameworkRespository<MailAccount>(this.iContext.Set<MailAccount>()));
-			this.iRepositories.Add(typeof(MailAddress), new EntityFrameworkRespository<MailAddress>(this.iContext.Set<MailAddress>()));
+			this.iRepositories = new Dictionary<string, IRepository>();
+			this.iRepositories.Add(nameof(MailAccount), new EntityFrameworkRespository<MailAccount>(this.iContext.Set<MailAccount>()));
+			this.iRepositories.Add(nameof(MailAddress), new EntityFrameworkRespository<MailAddress>(this.iContext.Set<MailAddress>()));
 		}
 
 		public IRepository<T> GetRepository<T>()
 		{
-			return (IRepository<T>)this.iRepositories[typeof(T)];
+			return (IRepository<T>)this.iRepositories[typeof(T).Name];
 		}
 		/// <summary>
 		/// metodo encargado de guardar los cambios del contexto de la aplicacion

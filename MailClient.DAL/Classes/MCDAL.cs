@@ -1,7 +1,7 @@
 ﻿using MailClient.DAL.Exceptions;
-using MailClient.DAL.Interfaces;
 using MailClient.Shared;
 using System;
+using System.Collections.Generic;
 
 namespace MailClient.DAL
 {
@@ -10,6 +10,7 @@ namespace MailClient.DAL
 		private static MCDAL iInstance;
 		private IUnitOfWork iUnitOfWork;
 		private MailServiceCollection iMailServiceCollection;
+        private IDictionary<string, IRepository> iRepositories;
 
 		/// <summary>
 		/// constructor de la clase donde se configuran los elementos necesarios para operar con la bbdd
@@ -19,40 +20,20 @@ namespace MailClient.DAL
 			//instanciación del UoW para manejar el contexto de la aplicación
 			this.iUnitOfWork = new UnitOfWork();
 			this.iMailServiceCollection = Serializer.ReadFromFile<MailServiceCollection>("Configuration/Services.xml");
-		}
+            this.iRepositories = new Dictionary<string, IRepository>();
+            this.iRepositories.Add(nameof(MailAccount), this.iUnitOfWork.GetRepository<MailAccount>());
+            this.iRepositories.Add(nameof(MailAddress), this.iUnitOfWork.GetRepository<MailAddress>());
+            this.iRepositories.Add(nameof(MailService), new InMemoryRespository<MailService>(this.iMailServiceCollection.MailServices));
+        }
 
-		/// <summary>
-		/// repositorio de las cuentas de correo
-		/// </summary>
-		public IRepository<MailAccount> MailAccountRepository
-		{
-			get
-			{
-				return this.iUnitOfWork.GetRepository<MailAccount>();
-			}
-		}
+        public IRepository<T> GetRepository<T>()
+        {
+            string mRepositoryName = typeof(T).Name;
+            if (!this.iRepositories.ContainsKey(mRepositoryName))
+                throw new Exception();
 
-		/// <summary>
-		/// repositorio de las direcciones de correo
-		/// </summary>
-		public IRepository<MailAddress> MailAddressRepository
-		{
-			get
-			{
-				return this.iUnitOfWork.GetRepository<MailAddress>();
-			}
-		}
-
-		/// <summary>
-		/// repositorio de los servicios de correo
-		/// </summary>
-		public IRepository<MailService> MailServiceRepository
-		{
-			get
-			{
-				return new InMemoryRespository<MailService>(this.iMailServiceCollection.MailServices);
-			}
-		}
+            return (IRepository<T>) this.iRepositories[mRepositoryName];
+        }
 
 		public void Save()
 		{

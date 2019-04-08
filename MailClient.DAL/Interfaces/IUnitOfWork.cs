@@ -1,7 +1,5 @@
-﻿using MailClient.DAL.Interfaces;
-using MailClient.Shared;
+﻿using MailClient.Shared;
 using System;
-using System.Data.Entity;
 
 namespace MailClient.DAL
 {

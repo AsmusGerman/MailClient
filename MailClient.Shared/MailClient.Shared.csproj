@@ -42,24 +42,26 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Exceptions\CastOperationException.cs" />
+    <Compile Include="Extensions\MailMessageExtension.cs" />
+    <Compile Include="Extensions\NetMailMessageExtension.cs" />
     <Compile Include="Interfaces\IEncryptor.cs" />
+    <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Model\BaseEntity.cs" />
     <Compile Include="Interfaces\IProtocol.cs" />
     <Compile Include="Model\MailAddress.cs" />
     <Compile Include="Model\Attachment.cs" />
-    <Compile Include="Model\MailMessageMailAddress.cs" />
     <Compile Include="Model\MailService.cs" />
     <Compile Include="Model\Protocol.cs" />
     <Compile Include="Model\Tag.cs" />
     <Compile Include="Exceptions\UnknownErrorException.cs" />
     <Compile Include="Exceptions\WellKnownException.cs" />
-    <Compile Include="Interfaces\IMailService.cs" />
     <Compile Include="Model\MailAccount.cs" />
     <Compile Include="Model\MailMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Interfaces\ISelector.cs" />
     <Compile Include="Tools\Serializer.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

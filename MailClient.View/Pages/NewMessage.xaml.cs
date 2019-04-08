@@ -14,12 +14,25 @@ namespace MailClient.View
     public partial class NewMessage : Page
     {
         private MailAccount iMailAccount;
+        private MailMessage iMailMessage;
 
         public NewMessage(MailAccount pMailAccount)
         {
             InitializeComponent();
             this.tbFromMailAddress.Text = "Nuevo Mensaje";
             this.iMailAccount = pMailAccount;
+        }
+
+        public NewMessage(MailAccount pMailAccount, MailMessage pMailMessage)
+        {
+            InitializeComponent();
+            this.tbFromMailAddress.Text = "Mensaje de respuesta";
+            this.iMailAccount = pMailAccount;
+            this.iMailMessage = pMailMessage;
+
+            this.lvToMailAddresses.ItemsSource = pMailMessage.To.Select(bMailMessages => bMailMessages.Value);
+            this.tbxMailSubject.Text = "RE:" + pMailMessage.Subject;
+            this.tbBody.Text = Environment.NewLine + new string('-', 100) + Environment.NewLine + pMailMessage.Body;
         }
 
         #region handlers for ToMailAddress ListView

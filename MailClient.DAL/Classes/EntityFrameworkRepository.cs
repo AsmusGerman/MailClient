@@ -1,7 +1,5 @@
 ﻿using MailClient.DAL.Exceptions;
-using MailClient.DAL.Interfaces;
 using MailClient.Shared;
-using MailClient.Shared.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;

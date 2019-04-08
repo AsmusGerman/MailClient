@@ -26,10 +26,6 @@
                         </Grid.ColumnDefinitions>
                         <TextBlock Grid.Column="0" x:Name="tbFromMailAddress" Margin="15"></TextBlock>
                         <StackPanel Grid.Column="1" Orientation="Horizontal">
-                            <Button x:Name="btnSaveMessage" Style="{StaticResource MaterialDesignFlatButton}" VerticalAlignment="Center" HorizontalAlignment="Right">
-                                <materialDesign:PackIcon Kind="ContentSave" Height="24" Width="24" Foreground="Orange" VerticalAlignment="Center"
-                                HorizontalAlignment="Center" />
-                            </Button>
                             <Button x:Name="btnSendMessage" Click="BtnSendMessage_Click" Style="{StaticResource MaterialDesignFlatButton}" VerticalAlignment="Center" HorizontalAlignment="Right">
                                 <materialDesign:PackIcon Kind="Send" Height="24" Width="24" Foreground="Orange" VerticalAlignment="Center"
                                 HorizontalAlignment="Center" />

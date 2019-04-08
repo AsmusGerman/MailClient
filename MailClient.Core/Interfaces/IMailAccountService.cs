@@ -1,5 +1,4 @@
 ﻿using MailClient.Shared;
-using System.Collections.Generic;
 
 namespace MailClient.Core
 {

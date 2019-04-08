@@ -60,10 +60,10 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.0\lib\netstandard1.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.ValueTuple.4.5.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
@@ -84,13 +84,14 @@
     <Reference Include="ToastNotifications.Messages, Version=2.5.1.0, Culture=neutral, PublicKeyToken=e89d9d7314a7c797, processorArchitecture=MSIL">
       <HintPath>..\packages\ToastNotifications.Messages.2.5.1\lib\net40\ToastNotifications.Messages.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.Abstractions, Version=4.0.2.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
-      <HintPath>..\packages\Unity.5.9.3\lib\net46\Unity.Abstractions.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Unity.Abstractions, Version=4.1.1.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.Abstractions.4.1.1\lib\net46\Unity.Abstractions.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.Container, Version=5.9.3.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
-      <HintPath>..\packages\Unity.5.9.3\lib\net46\Unity.Container.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Unity.Configuration, Version=5.10.0.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.Configuration.5.10.0\lib\net46\Unity.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Container, Version=5.10.0.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.Container.5.10.0\lib\net46\Unity.Container.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
@@ -101,6 +102,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Classes\ContainerBuilder.cs" />
     <Compile Include="Exceptions\InternalOperationException.cs" />
     <Compile Include="Pages\NewMessage.xaml.cs">
       <DependentUpon>NewMessage.xaml</DependentUpon>
@@ -114,15 +116,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Components\Alert.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Components\InboxMenu.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Components\RichTextControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -145,16 +139,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Classes\MailMessageObservableCollection.cs" />
-    <Compile Include="Classes\MailMessageVM.cs" />
-    <Compile Include="Components\Alert.xaml.cs">
-      <DependentUpon>Alert.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Components\InboxMenu.xaml.cs">
       <DependentUpon>InboxMenu.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Components\RichTextControl.xaml.cs">
-      <DependentUpon>RichTextControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Configuration.xaml.cs">
       <DependentUpon>Configuration.xaml</DependentUpon>
@@ -211,10 +197,11 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="Configuration\unity.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MailClient.BLL\MailClient.BLL.csproj">
@@ -229,11 +216,6 @@
       <Project>{692417D2-9A32-4F5E-BD43-05AF3CD0E64C}</Project>
       <Name>MailClient.Shared</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Configuration\Services.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
