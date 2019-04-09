@@ -48,11 +48,11 @@ namespace MailClient.View
             {
                 this.iSpinner.IsIndeterminate = true;
                 await Facade.Instance.UpdateInbox(this.iUserAccount, pPageSize);
-                Facade.Instance.Notifier.ShowSuccess("Casilla de correo actualizada");
+                AccountWindow.Notifier.ShowSuccess("Casilla de correo actualizada");
             }
             catch (Exception bException)
             {
-                Facade.Instance.Notifier.ShowError(bException.Message);
+                AccountWindow.Notifier.ShowError(bException.Message);
             }
             finally
             {
@@ -125,7 +125,7 @@ namespace MailClient.View
             }
             catch (Exception bException)
             {
-                Facade.Instance.Notifier.ShowError(bException.Message);
+                AccountWindow.Notifier.ShowError(bException.Message);
             }
         }
 

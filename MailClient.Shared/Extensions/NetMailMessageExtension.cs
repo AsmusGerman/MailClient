@@ -9,7 +9,7 @@ namespace MailClient.Shared.Extensions
             return new MailMessage()
             {
                 ExternalId = pNetMailMessage.Headers["ExternalId"],
-                DateSent = DateTime.Parse(pNetMailMessage.Headers["DateSent"]),
+                DateSent = DateTime.Parse(pNetMailMessage.Headers["DateSent"]).ToLongDateString(),
                 Body = pNetMailMessage.Body ?? default(string),
                 Subject = pNetMailMessage.Subject ?? default(string),
                 From = new MailAddress() { Value = pNetMailMessage.From.Address },

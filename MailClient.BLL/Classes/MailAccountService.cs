@@ -125,6 +125,7 @@ namespace MailClient.BLL
                 //guardar el mensaje en el repositorio
                 mMailAccount.MailAddress.FromMessages.Add(mMailMessage);
                 mMailMessage.To = this.ResolveDbMailAddresses(mMailMessage.To).ToList();
+                mMailMessage.DateSent = DateTime.Now.ToShortDateString();
                 MCDAL.Instance.Save();
 
                 this.Send(pProtocolName, mMailAccount.GetMailServiceHost(), mMailAccount.MailAddress.Value, this.iEncryptor.Decrypt(mMailAccount.Password), mMailMessage);

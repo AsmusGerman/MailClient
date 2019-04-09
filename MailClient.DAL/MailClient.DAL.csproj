@@ -62,29 +62,9 @@
     <Compile Include="Exceptions\DataAccessLayerException.cs" />
     <Compile Include="Exceptions\SavingContextException.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />
-    <Compile Include="Migrations\201904062205585_InitialMigration.cs" />
-    <Compile Include="Migrations\201904062205585_InitialMigration.Designer.cs">
-      <DependentUpon>201904062205585_InitialMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201904070057414_InitialMigration02.cs" />
-    <Compile Include="Migrations\201904070057414_InitialMigration02.Designer.cs">
-      <DependentUpon>201904070057414_InitialMigration02.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201904070247586_InitialMigration03.cs" />
-    <Compile Include="Migrations\201904070247586_InitialMigration03.Designer.cs">
-      <DependentUpon>201904070247586_InitialMigration03.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201904070743004_InitialMigration04.cs" />
-    <Compile Include="Migrations\201904070743004_InitialMigration04.Designer.cs">
-      <DependentUpon>201904070743004_InitialMigration04.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201904070811336_InitialMigration05.cs" />
-    <Compile Include="Migrations\201904070811336_InitialMigration05.Designer.cs">
-      <DependentUpon>201904070811336_InitialMigration05.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201904090413282_Migration05.cs" />
-    <Compile Include="Migrations\201904090413282_Migration05.Designer.cs">
-      <DependentUpon>201904090413282_Migration05.cs</DependentUpon>
+    <Compile Include="Migrations\201904092155132_FirstMigration.cs" />
+    <Compile Include="Migrations\201904092155132_FirstMigration.Designer.cs">
+      <DependentUpon>201904092155132_FirstMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Resources\Exceptions.Designer.cs">
@@ -109,23 +89,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201904062205585_InitialMigration.resx">
-      <DependentUpon>201904062205585_InitialMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201904070057414_InitialMigration02.resx">
-      <DependentUpon>201904070057414_InitialMigration02.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201904070247586_InitialMigration03.resx">
-      <DependentUpon>201904070247586_InitialMigration03.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201904070743004_InitialMigration04.resx">
-      <DependentUpon>201904070743004_InitialMigration04.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201904070811336_InitialMigration05.resx">
-      <DependentUpon>201904070811336_InitialMigration05.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201904090413282_Migration05.resx">
-      <DependentUpon>201904090413282_Migration05.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201904092155132_FirstMigration.resx">
+      <DependentUpon>201904092155132_FirstMigration.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Exceptions.resx">
       <Generator>ResXFileCodeGenerator</Generator>

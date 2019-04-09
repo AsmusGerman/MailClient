@@ -19,14 +19,19 @@ namespace MailClient.View
         private IMailAccountService iMailAccountService;
         private IMailMessageService iMailMessageService;
 
-        public Notifier Notifier { get; set; }
-
         private Facade()
         {
-            this.Notifier = new Notifier(cfg =>
+            this.iAuthenticationService = ContainerBuilder.Resolve<IAuthenticationService>();
+            this.iMailAccountService = ContainerBuilder.Resolve<IMailAccountService>();
+            this.iMailMessageService = ContainerBuilder.Resolve<IMailMessageService>();
+        }
+
+        public Notifier GetNotifier(Window pWindow)
+        {
+            return new Notifier(cfg =>
             {
                 cfg.PositionProvider = new WindowPositionProvider(
-                    parentWindow: Application.Current.MainWindow,
+                    parentWindow: pWindow,
                     corner: Corner.TopRight,
                     offsetX: 10,
                     offsetY: 10);
@@ -38,11 +43,6 @@ namespace MailClient.View
                 cfg.Dispatcher = Application.Current.Dispatcher;
                 cfg.DisplayOptions.TopMost = true;
             });
-
-            this.iAuthenticationService = ContainerBuilder.Resolve<IAuthenticationService>();
-            this.iMailAccountService = ContainerBuilder.Resolve<IMailAccountService>();
-            this.iMailMessageService = ContainerBuilder.Resolve<IMailMessageService>();
-
         }
 
         /// <summary>

@@ -66,7 +66,7 @@ namespace MailClient.View
             }
             catch (Exception bException)
             {
-                Facade.Instance.Notifier.ShowError(bException.Message);
+                AccountWindow.Notifier.ShowError(bException.Message);
             }
         }
 
@@ -80,7 +80,7 @@ namespace MailClient.View
             catch (Exception bException)
             {
                 Exception mException = new Exception("El formato del correo ingresado no es válido", bException);
-                Facade.Instance.Notifier.ShowError(mException.Message);
+                AccountWindow.Notifier.ShowError(mException.Message);
                 return false;
             }
         }
@@ -111,7 +111,7 @@ namespace MailClient.View
             }
             catch (Exception bException)
             {
-                Facade.Instance.Notifier.ShowError(bException.Message);
+                AccountWindow.Notifier.ShowError(bException.Message);
             }
 
         }

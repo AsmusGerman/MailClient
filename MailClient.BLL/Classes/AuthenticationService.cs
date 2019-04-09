@@ -9,11 +9,14 @@ namespace MailClient.BLL
     {
         private IEncryptor iEncryptor;
         private IRepository<MailAccount> iMailAccountRepository;
+        private IRepository<MailAddress> iMailAddressRepository;
 
         public AuthenticationService()
         {
             this.iEncryptor = new DPEntryptor();
             this.iMailAccountRepository = MCDAL.Instance.GetRepository<MailAccount>();
+            this.iMailAddressRepository = MCDAL.Instance.GetRepository<MailAddress>();
+
         }
 
         /// <summary>
@@ -75,7 +78,7 @@ namespace MailClient.BLL
                 string mPassword = this.iEncryptor.Encrypt(pPassword);
 
                 //se crea la direccion de correo
-                MailAddress mMailAddress = new MailAddress
+                MailAddress mMailAddress = this.iMailAddressRepository.Single(MailAddressSelector.ByMailAddress(pMailAddress)) ?? new MailAddress
                 {
                     Value = pMailAddress
                 };

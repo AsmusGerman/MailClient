@@ -42,7 +42,7 @@ namespace MailClient.View
             }
             catch (Exception bException)
             {
-                Facade.Instance.Notifier.ShowError(bException.Message);
+                AccountWindow.Notifier.ShowError(bException.Message);
             }
         }
 
@@ -71,7 +71,7 @@ namespace MailClient.View
             }
             catch (Exception bException)
             {
-                Facade.Instance.Notifier.ShowError(bException.Message);
+                AccountWindow.Notifier.ShowError(bException.Message);
             }
             finally
             {
@@ -90,7 +90,7 @@ namespace MailClient.View
             }
             catch (Exception bException)
             {
-                Facade.Instance.Notifier.ShowError(bException.Message);
+                AccountWindow.Notifier.ShowError(bException.Message);
             }
 
         }

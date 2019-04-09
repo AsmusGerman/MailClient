@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Navigation;
 using ToastNotifications.Messages;
+using ToastNotifications;
 
 namespace MailClient.View
 {
@@ -22,11 +23,13 @@ namespace MailClient.View
 	/// </summary>
 	public partial class AccountWindow : Window
 	{
+        public static Notifier Notifier { get; set; }
 		private Inbox iInboxPage;
 
 		public AccountWindow(MailAccount pMailAccount)
 		{
 			InitializeComponent();
+            Notifier = Facade.Instance.GetNotifier(this);
 
             try
             {
@@ -35,7 +38,7 @@ namespace MailClient.View
             }
             catch (Exception bException)
             {
-                Facade.Instance.Notifier.ShowError(bException.Message);
+                Notifier.ShowError(bException.Message);
             }
 
 		}

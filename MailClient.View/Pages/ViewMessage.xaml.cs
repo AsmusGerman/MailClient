@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using ToastNotifications.Messages;
 
 namespace MailClient.View
 {
@@ -99,7 +100,7 @@ namespace MailClient.View
             }
             catch (Exception bException)
             {
-                throw;
+                AccountWindow.Notifier.ShowError(bException.Message);
             }
             
         }

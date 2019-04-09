@@ -47,6 +47,6 @@ namespace MailClient.Shared
 		/// </summary>
 		public string Subject { get; set; }
 
-        public DateTime DateSent { get; set; }
+        public string DateSent { get; set; }
     }
 }

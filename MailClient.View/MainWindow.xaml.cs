@@ -9,10 +9,11 @@ namespace MailClient.View
 {
     public partial class MainWindow : Window
     {
+        public static Notifier Notifier { get; private set; }
         public MainWindow()
         {
             InitializeComponent();
-           
+            MainWindow.Notifier = Facade.Instance.GetNotifier(this);
         }
         private async void BtnLogin_Click(object sender, RoutedEventArgs e)
         {
@@ -39,13 +40,13 @@ namespace MailClient.View
                     }
                 }
 
-                Facade.Instance.Notifier.ShowSuccess("¡Bienvenido nuevamente!");
+                Notifier.ShowSuccess("¡Bienvenido nuevamente!");
                 //acceder a la vista de la cuenta
                 new AccountWindow(mMailAccount).Show();
             }
             catch (Exception bException)
             {
-                Facade.Instance.Notifier.ShowError(bException.Message);
+                Notifier.ShowError(bException.Message);
             }
             finally
             {
@@ -66,7 +67,7 @@ namespace MailClient.View
                 }
 
                 await Facade.Instance.Register(this.tbxAlias.Text, this.tbxMailAddress.Text, this.pwbPassword.Password);
-                Facade.Instance.Notifier.ShowSuccess("¡La cuenta fue registrada con éxito!");
+                Notifier.ShowSuccess("¡La cuenta fue registrada con éxito!");
 
                 //se limpian los controles
                 this.tbxAlias.Clear();
@@ -75,15 +76,15 @@ namespace MailClient.View
             }
             catch (Exception bException)
             {
-                Facade.Instance.Notifier.ShowError(bException.Message);
+                Notifier.ShowError(bException.Message);
             }
         }
 
         private void Window_ContentRendered(object sender, EventArgs e)
         {
-            Facade.Instance.Notifier.ShowInformation("¡Bienvenido!");
-            Facade.Instance.Notifier.ShowInformation("Si aún no tienes cuenta, completa los tres campos y haz click en Registrar");
-            Facade.Instance.Notifier.ShowInformation("Si ya tienes una cuenta, ingresa el alias o la dirección de correo, la constraseña de tu cuenta y haz click en Ingresar.");
+            Notifier.ShowInformation("¡Bienvenido!");
+            Notifier.ShowInformation("Si aún no tienes cuenta, completa los tres campos y haz click en Registrar");
+            Notifier.ShowInformation("Si ya tienes una cuenta, ingresa el alias o la dirección de correo, la constraseña de tu cuenta y haz click en Ingresar.");
         }
     }
 }
