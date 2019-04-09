@@ -20,8 +20,7 @@ namespace MailClient.DAL
 
 			Property(bAttachment => bAttachment.FileName)
                 .HasColumnType("nvarchar")
-				.HasMaxLength(256)
 				.IsRequired();
-		}
-	}
+        }
+    }
 }

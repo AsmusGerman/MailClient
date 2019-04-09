@@ -25,38 +25,38 @@ namespace MailClient.BLL
         private Shared.MailMessage iMailMessage;
         private IProtocol iProtocol;
 
-        public SendMailMessageCommand(int pMailAccountId, string pProtocolName, IEnumerable<string> pToMailAddresses, string pSubject, string pBody)
+        public SendMailMessageCommand()
         {
             this.iEncryptor = new DPEntryptor();
             this.iMailAccountRepository = MCDAL.Instance.GetRepository<MailAccount>();
             this.iMailAddressRepository = MCDAL.Instance.GetRepository<Shared.MailAddress>();
             this.iMailServiceRepository = MCDAL.Instance.GetRepository<MailService>();
-
-            //se obtiene la cuenta del usuario activo
-            this.iMailAccount = this.iMailAccountRepository.Single(MailAccountSelector.ById(pMailAccountId));
-
-            //se crea el mensaje
-            this.iMailMessage = new Shared.MailMessage()
-            {
-                Subject = pSubject,
-                To = pToMailAddresses.Select(bMailAddress => new Shared.MailAddress()
-                {
-                    Value = bMailAddress
-
-                }).ToList(),
-                Body = pBody
-            };
-
-            //se obtienen los datos del protocolo
-            this.iProtocol = this.iMailServiceRepository
-                .Single(MailServiceSelector.ByName(this.iMailAccount.GetMailServiceHost()))
-                .Protocols.Single(bProtocol => bProtocol.Name.ToLower() == pProtocolName);
         }
 
-        public override void Execute()
+        public void Execute(int pMailAccountId, string pProtocolName, IEnumerable<string> pToMailAddresses, string pSubject, string pBody)
         {
             try
             {
+                //se obtiene la cuenta del usuario activo
+                this.iMailAccount = this.iMailAccountRepository.Single(MailAccountSelector.ById(pMailAccountId));
+
+                //se crea el mensaje
+                this.iMailMessage = new Shared.MailMessage()
+                {
+                    Subject = pSubject,
+                    To = pToMailAddresses.Select(bMailAddress => new Shared.MailAddress()
+                    {
+                        Value = bMailAddress
+
+                    }).ToList(),
+                    Body = pBody
+                };
+
+                //se obtienen los datos del protocolo
+                this.iProtocol = this.iMailServiceRepository
+                    .Single(MailServiceSelector.ByName(this.iMailAccount.GetMailServiceHost()))
+                    .Protocols.Single(bProtocol => bProtocol.Name.ToLower() == pProtocolName);
+
                 iMailMessage.From = iMailAccount.MailAddress;
                 //guardar el mensaje en el repositorio
                 iMailAccount.MailAddress.FromMessages.Add(iMailMessage);

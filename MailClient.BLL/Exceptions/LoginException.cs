@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 
 namespace MailClient.BLL
 {
-	public class LoginException : Exception
+	public class UnknownAccountException : Exception
 	{
-		public LoginException()
+		public UnknownAccountException()
 		{
 		}
 
-		public LoginException(string message) : base(message)
+		public UnknownAccountException(string message) : base(message)
 		{
 		}
 
-		public LoginException(string message, Exception innerException) : base(message, innerException)
+		public UnknownAccountException(string message, Exception innerException) : base(message, innerException)
 		{
 		}
 	}

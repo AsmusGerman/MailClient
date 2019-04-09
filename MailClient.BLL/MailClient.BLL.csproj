@@ -66,10 +66,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommunicationProtocols\Pop3.cs" />
-    <Compile Include="CommunicationProtocols\Smtp.cs" />
-    <Compile Include="Encryptors\DPEntryptor.cs" />
-    <Compile Include="Encryptors\NullEncryptor.cs" />
+    <Compile Include="Interfaces\IMailMessageService.cs" />
+    <Compile Include="Classes\MailMessageService.cs" />
+    <Compile Include="Classes\TXTMailMessageConverter.cs" />
+    <Compile Include="Classes\EMLMailMessageConverter.cs" />
+    <Compile Include="Classes\MailMessageConverter.cs" />
+    <Compile Include="Exceptions\UnexistentMailConverterException.cs" />
+    <Compile Include="Exceptions\AccountDeletedException.cs" />
+    <Compile Include="Classes\Pop3.cs" />
+    <Compile Include="Classes\Smtp.cs" />
+    <Compile Include="Classes\DPEntryptor.cs" />
+    <Compile Include="Exceptions\UnexistentAccountException.cs" />
     <Compile Include="Exceptions\FailOnAuth.cs" />
     <Compile Include="Exceptions\FailOnConnect.cs" />
     <Compile Include="Exceptions\FailOnCreateMessage.cs" />
@@ -84,12 +91,14 @@
     <Compile Include="Exceptions\RegisterException.cs" />
     <Compile Include="Exceptions\SmtpClientException.cs" />
     <Compile Include="Exceptions\UnknownComunicationProtocol.cs" />
+    <Compile Include="Interfaces\IAuthenticationService.cs" />
+    <Compile Include="Interfaces\IMailAccountService.cs" />
     <Compile Include="Selectors\MailAddressSelector.cs" />
     <Compile Include="Selectors\MailServiceSelector.cs" />
-    <Compile Include="Services\AuthenticationService.cs" />
+    <Compile Include="Classes\AuthenticationService.cs" />
     <Compile Include="Exceptions\LoginException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\MailAccountService.cs" />
+    <Compile Include="Classes\MailAccountService.cs" />
     <Compile Include="Resources\Exceptions.Designer.cs">
       <DependentUpon>Exceptions.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -99,10 +108,6 @@
     <Compile Include="Selectors\MailAccountSelector.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MailClient.Core\MailClient.Core.csproj">
-      <Project>{499a47c0-cfbb-4797-a6f4-da4f93d6a209}</Project>
-      <Name>MailClient.Core</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MailClient.DAL\MailClient.DAL.csproj">
       <Project>{C6305F39-D845-4956-AA49-D71DD4B8D088}</Project>
       <Name>MailClient.DAL</Name>
@@ -113,7 +118,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

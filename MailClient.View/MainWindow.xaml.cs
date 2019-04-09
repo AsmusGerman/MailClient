@@ -2,6 +2,7 @@
 using MailClient.Shared.Exceptions;
 using System;
 using System.Windows;
+using ToastNotifications;
 using ToastNotifications.Messages;
 
 namespace MailClient.View
@@ -11,8 +12,8 @@ namespace MailClient.View
         public MainWindow()
         {
             InitializeComponent();
+           
         }
-
         private async void BtnLogin_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -34,8 +35,7 @@ namespace MailClient.View
                     }
                     else
                     {
-                        InvalidOperationException bInnerException = new InvalidOperationException("Al menos uno de los cuadros de texto está en blanco o es un espacio vacío");
-                        throw new WellKnownException("No se pudo continuar porque existen campos incompletos", bInnerException);
+                        throw new WellKnownException("No se pudo continuar porque existen campos incompletos");
                     }
                 }
 
@@ -62,8 +62,7 @@ namespace MailClient.View
                     || string.IsNullOrEmpty(this.tbxAlias.Text)
                     || string.IsNullOrEmpty(this.tbxMailAddress.Text))
                 {
-                    InvalidOperationException bInnerException = new InvalidOperationException("Al menos uno de los cuadros de texto está en blanco o es un espacio vacío");
-                    throw new WellKnownException("No se pudo continuar porque existen campos incompletos", bInnerException);
+                    throw new WellKnownException("No se pudo continuar porque existen campos incompletos");
                 }
 
                 await Facade.Instance.Register(this.tbxAlias.Text, this.tbxMailAddress.Text, this.pwbPassword.Password);
@@ -78,6 +77,13 @@ namespace MailClient.View
             {
                 Facade.Instance.Notifier.ShowError(bException.Message);
             }
+        }
+
+        private void Window_ContentRendered(object sender, EventArgs e)
+        {
+            Facade.Instance.Notifier.ShowInformation("¡Bienvenido!");
+            Facade.Instance.Notifier.ShowInformation("Si aún no tienes cuenta, completa los tres campos y haz click en Registrar");
+            Facade.Instance.Notifier.ShowInformation("Si ya tienes una cuenta, ingresa el alias o la dirección de correo, la constraseña de tu cuenta y haz click en Ingresar.");
         }
     }
 }

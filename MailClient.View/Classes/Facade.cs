@@ -1,6 +1,5 @@
-﻿using MailClient.Core;
+﻿using MailClient.BLL;
 using MailClient.Shared;
-using MailClient.Shared.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,29 +17,33 @@ namespace MailClient.View
         private static Facade iInstance;
         private IAuthenticationService iAuthenticationService;
         private IMailAccountService iMailAccountService;
+        private IMailMessageService iMailMessageService;
 
-        public Notifier Notifier { get; private set; }
+        public Notifier Notifier { get; set; }
+
         private Facade()
         {
+            this.Notifier = new Notifier(cfg =>
+            {
+                cfg.PositionProvider = new WindowPositionProvider(
+                    parentWindow: Application.Current.MainWindow,
+                    corner: Corner.TopRight,
+                    offsetX: 10,
+                    offsetY: 10);
+
+                cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
+                    notificationLifetime: TimeSpan.FromSeconds(5),
+                    maximumNotificationCount: MaximumNotificationCount.FromCount(5));
+
+                cfg.Dispatcher = Application.Current.Dispatcher;
+                cfg.DisplayOptions.TopMost = true;
+            });
 
             this.iAuthenticationService = ContainerBuilder.Resolve<IAuthenticationService>();
             this.iMailAccountService = ContainerBuilder.Resolve<IMailAccountService>();
-            this.Notifier = new Notifier(cfg =>
-             {
-                 cfg.PositionProvider = new WindowPositionProvider(
-                     parentWindow: Application.Current.MainWindow,
-                     corner: Corner.TopRight,
-                     offsetX: 10,
-                     offsetY: 10);
+            this.iMailMessageService = ContainerBuilder.Resolve<IMailMessageService>();
 
-                 cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
-                     notificationLifetime: TimeSpan.FromSeconds(3),
-                     maximumNotificationCount: MaximumNotificationCount.FromCount(5));
-
-                 cfg.Dispatcher = Application.Current.Dispatcher;
-             });
         }
-
 
         /// <summary>
         /// Obtiene la única instancia de la fachada
@@ -110,7 +113,7 @@ namespace MailClient.View
         {
             try
             {
-                await Task.Run(() => this.iMailAccountService.Retrieve(pUserAccount, pWindow));
+                await Task.Run(() => this.iMailAccountService.Retrieve(pUserAccount.Id, "pop3", pWindow));
             }
             catch (Exception bException)
             {
@@ -125,7 +128,23 @@ namespace MailClient.View
         {
             try
             {
-                await Task.Run(() => this.iMailAccountService.Send(pUserAccount, pMailMessage));
+                await Task.Run(() => this.iMailAccountService.Send(pUserAccount.Id,
+                                                                    "smtp",
+                                                                    pMailMessage.To.Select(bMailAddress => bMailAddress.Value).ToList(),
+                                                                    pMailMessage.Subject,
+                                                                    pMailMessage.Body));
+            }
+            catch (Exception bException)
+            {
+                throw new InternalOperationException(Resources.Exceptions.SendException, bException);
+            }
+        }
+
+        public async Task<string> ConvertMessageToFormat(string pFormatName, MailMessage pMailMessage)
+        {
+            try
+            {
+                return await Task.Run(() => this.iMailMessageService.ConvertMailMessage(pFormatName, pMailMessage));
             }
             catch (Exception bException)
             {

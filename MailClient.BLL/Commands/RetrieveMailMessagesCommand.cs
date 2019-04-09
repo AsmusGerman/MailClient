@@ -1,5 +1,4 @@
 ﻿using MailClient.BLL.Selectors;
-using MailClient.Core;
 using MailClient.DAL;
 using MailClient.Shared;
 using MailClient.Shared.Extensions;
@@ -22,27 +21,27 @@ namespace MailClient.BLL
         private int iRetrieveWindowSize;
         private IProtocol iProtocol;
 
-        public RetrieveMailMessagesCommand(int pMailAccountId, string pProtocolName, int pRetrieveWindowSize)
+        public RetrieveMailMessagesCommand()
         {
             this.iEncryptor = new DPEntryptor();
             this.iMailAccountRepository = MCDAL.Instance.GetRepository<MailAccount>();
             this.iMailAddressRepository = MCDAL.Instance.GetRepository<Shared.MailAddress>();
             this.iMailServiceRepository = MCDAL.Instance.GetRepository<MailService>();
-
-            //se obtiene la cuenta del usuario activo
-            this.iMailAccount = this.iMailAccountRepository.Single(MailAccountSelector.ById(pMailAccountId));
-            this.iRetrieveWindowSize = pRetrieveWindowSize;
-
-            //se obtienen los datos del protocolo
-            this.iProtocol = this.iMailServiceRepository
-                .Single(MailServiceSelector.ByName(this.iMailAccount.GetMailServiceHost()))
-                .Protocols.Single(bProtocol => bProtocol.Name.ToLower() == pProtocolName);
         }
 
-        public override void Execute()
+        public void Execute(int pMailAccountId, string pProtocolName, int pRetrieveWindowSize)
         {
             try
             {
+                //se obtiene la cuenta del usuario activo
+                this.iMailAccount = this.iMailAccountRepository.Single(MailAccountSelector.ById(pMailAccountId));
+                this.iRetrieveWindowSize = pRetrieveWindowSize;
+
+                //se obtienen los datos del protocolo
+                this.iProtocol = this.iMailServiceRepository
+                    .Single(MailServiceSelector.ByName(this.iMailAccount.GetMailServiceHost()))
+                    .Protocols.Single(bProtocol => bProtocol.Name.ToLower() == pProtocolName);
+
                 //se obtiene la cantidad de mensajes como base para obtener los siguientes
                 int mLastMessageId =
                     this.iMailAccount.MailAddress.FromMessages.Any()
@@ -136,7 +135,6 @@ namespace MailClient.BLL
             mMailMessage.Headers.Add("ExternalId", pPopMessage.Headers.MessageId);
             return mMailMessage;
         }
-
 
         private IEnumerable<Shared.MailAddress> ResolveDbMailAddresses(IEnumerable<Shared.MailAddress> pSource)
         {

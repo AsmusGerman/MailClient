@@ -46,5 +46,7 @@ namespace MailClient.Shared
 		/// Asunto del mensaje
 		/// </summary>
 		public string Subject { get; set; }
+
+        public DateTime DateSent { get; set; }
     }
 }

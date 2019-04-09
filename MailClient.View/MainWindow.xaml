@@ -15,10 +15,10 @@
 		 TextOptions.TextFormattingMode="Ideal"
 		 TextOptions.TextRenderingMode="Auto"
 		 Background="{DynamicResource MaterialDesignPaper}"
-		 FontFamily="{DynamicResource MaterialDesignFont}">
-	<Grid>
-
-		<materialDesign:Card HorizontalAlignment="Center" VerticalAlignment="Center" Height="600" Width="400">
+		 FontFamily="{DynamicResource MaterialDesignFont}"
+        ContentRendered="Window_ContentRendered">
+    <Grid>
+        <materialDesign:Card HorizontalAlignment="Center" VerticalAlignment="Center" Height="600" Width="400">
 			<Grid HorizontalAlignment="Center" VerticalAlignment="Center">
 				<Grid.RowDefinitions>
 					<RowDefinition Height="auto" />

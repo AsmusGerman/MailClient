@@ -33,6 +33,9 @@ namespace MailClient.DAL
                 .IsVariableLength()
                 .IsOptional();
 
+            Property(bMailMessage => bMailMessage.DateSent)
+                .IsOptional();
+
             HasRequired(bMailMessage => bMailMessage.From)
                 .WithMany()
                 .WillCascadeOnDelete(false);

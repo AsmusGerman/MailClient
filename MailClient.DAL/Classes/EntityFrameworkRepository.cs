@@ -61,7 +61,7 @@ namespace MailClient.DAL
 			}
 			catch (Exception bException)
 			{
-				throw new RepositoryOperationException(Resources.Exceptions.CreateEntitiesException, bException);
+				throw new RepositoryOperationException(Resources.Exceptions.CreateEntityException, bException);
 			}
 		}
 

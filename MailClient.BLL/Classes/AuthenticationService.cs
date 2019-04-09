@@ -1,5 +1,4 @@
 ﻿using MailClient.BLL.Selectors;
-using MailClient.Core;
 using MailClient.DAL;
 using MailClient.Shared;
 using System;
@@ -10,7 +9,7 @@ namespace MailClient.BLL
     {
         private IEncryptor iEncryptor;
         private IRepository<MailAccount> iMailAccountRepository;
-        
+
         public AuthenticationService()
         {
             this.iEncryptor = new DPEntryptor();
@@ -22,22 +21,19 @@ namespace MailClient.BLL
         /// </summary>
         public MailAccount LoginByAlias(string pAlias, string pPassword)
         {
-            try
-            {
-                //Se obtiene la existencia de la cuenta que corresponde a los argumentos
-                MailAccount mMailAccount = this.iMailAccountRepository.Single(MailAccountSelector.ByAlias(pAlias));
-                if (this.iEncryptor.Decrypt(mMailAccount.Password) != pPassword)
-                    throw new LoginException();
+            //Se obtiene la existencia de la cuenta que corresponde a los argumentos
+            MailAccount mMailAccount = this.iMailAccountRepository.Single(MailAccountSelector.ByAlias(pAlias));
 
-                if (mMailAccount.Deleted)
-                    throw new LoginException();
+            if (mMailAccount == null)
+                throw new ExistentAccountException();
 
-                return mMailAccount;
-            }
-            catch (Exception bException)
-            {
-                throw new LoginException(Resources.Exceptions.LoginException, bException);
-            }
+            if (this.iEncryptor.Decrypt(mMailAccount.Password) != pPassword)
+                throw new UnknownAccountException();
+
+            if (mMailAccount.Deleted)
+                throw new AccountDeletedException();
+
+            return mMailAccount;
         }
 
         /// <summary>
@@ -45,22 +41,19 @@ namespace MailClient.BLL
         /// </summary>
         public MailAccount LoginByMailAddress(string pMailAddress, string pPassword)
         {
-            try
-            {
-                //Se obtiene la existencia de la cuenta que corresponde a los argumentos
-                MailAccount mMailAccount = this.iMailAccountRepository.Single(MailAccountSelector.ByMailAddress(pMailAddress));
-                if (this.iEncryptor.Decrypt(mMailAccount.Password) != pPassword)
-                    throw new LoginException();
+            //Se obtiene la existencia de la cuenta que corresponde a los argumentos
+            MailAccount mMailAccount = this.iMailAccountRepository.Single(MailAccountSelector.ByMailAddress(pMailAddress));
 
-                if (mMailAccount.Deleted)
-                    throw new LoginException();
+            if (mMailAccount == null)
+                throw new ExistentAccountException();
 
-                return mMailAccount;
-            }
-            catch (Exception bException)
-            {
-                throw new LoginException(Resources.Exceptions.LoginException, bException);
-            }
+            if (this.iEncryptor.Decrypt(mMailAccount.Password) != pPassword)
+                throw new UnknownAccountException();
+
+            if (mMailAccount.Deleted)
+                throw new AccountDeletedException();
+
+            return mMailAccount;
         }
 
         /// <summary>
@@ -70,6 +63,14 @@ namespace MailClient.BLL
         {
             try
             {
+                MailAccount mMailAccount;
+
+                //Se obtiene la existencia de la cuenta que corresponde a los argumentos
+                mMailAccount = this.iMailAccountRepository.Single(MailAccountSelector.ByMailAddress(pMailAddress));
+
+                if (mMailAccount != null)
+                    throw new ExistentAccountException();
+
                 //se encripta la contraseña
                 string mPassword = this.iEncryptor.Encrypt(pPassword);
 
@@ -80,7 +81,7 @@ namespace MailClient.BLL
                 };
 
                 //se crea la cuenta de correo
-                MailAccount mMailAccount = new MailAccount
+                mMailAccount = new MailAccount
                 {
                     Alias = pAlias,
                     MailAddress = mMailAddress,

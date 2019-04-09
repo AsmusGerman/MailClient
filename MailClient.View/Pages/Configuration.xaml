@@ -16,54 +16,48 @@
 		 TextOptions.TextRenderingMode="Auto"
 		 Background="{DynamicResource MaterialDesignPaper}"
 		 FontFamily="{DynamicResource MaterialDesignFont}">
-	<Grid>
-		<Grid.RowDefinitions>
-			<RowDefinition Height="*" />
-			<RowDefinition Height="*" />
-			<RowDefinition Height="auto" />
-		</Grid.RowDefinitions>
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="*"/>
-		</Grid.ColumnDefinitions>
-
-		<GroupBox Grid.Row="0" Header="Datos de la cuenta" Padding="5">
-			<Grid>
-				<Grid.RowDefinitions>
-					<RowDefinition Height="auto" />
-					<RowDefinition Height="auto" />
-					<RowDefinition Height="auto" />
+    <Grid >
+        <materialDesign:Card HorizontalAlignment="Center" VerticalAlignment="Center" Height="520" Width="400">
+            <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
                     <RowDefinition Height="auto" />
                 </Grid.RowDefinitions>
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="*" />
-				</Grid.ColumnDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
 
-				<TextBox x:Name="tbxAlias" Grid.Row="0" Margin="15">
-					<materialDesign:HintAssist.Hint>
-						<StackPanel Orientation="Horizontal" Margin="-2 0 0 0">
-							<materialDesign:PackIcon Kind="Account" VerticalAlignment="Center" Margin="0 0 5 0"/>
-							<TextBlock VerticalAlignment="Center">Alias</TextBlock>
-						</StackPanel>
-					</materialDesign:HintAssist.Hint>
-				</TextBox>
+                <TextBox x:Name="tbxAlias" Grid.Row="0" Margin="15">
+                    <materialDesign:HintAssist.Hint>
+                        <StackPanel Orientation="Horizontal" Margin="-2 0 0 0">
+                            <materialDesign:PackIcon Kind="Account" VerticalAlignment="Center" Margin="0 0 5 0"/>
+                            <TextBlock VerticalAlignment="Center">Alias</TextBlock>
+                        </StackPanel>
+                    </materialDesign:HintAssist.Hint>
+                </TextBox>
 
-				<TextBox x:Name="tbxMailAddress" Grid.Row="1" Margin="15">
-					<materialDesign:HintAssist.Hint>
-						<StackPanel Orientation="Horizontal" Margin="-2 0 0 0">
-							<materialDesign:PackIcon Kind="MailRu" VerticalAlignment="Center" Margin="0 0 5 0"/>
-							<TextBlock VerticalAlignment="Center">Correo Elecrónico</TextBlock>
-						</StackPanel>
-					</materialDesign:HintAssist.Hint>
-				</TextBox>
+                <TextBox x:Name="tbxMailAddress" Grid.Row="1" Margin="15">
+                    <materialDesign:HintAssist.Hint>
+                        <StackPanel Orientation="Horizontal" Margin="-2 0 0 0">
+                            <materialDesign:PackIcon Kind="MailRu" VerticalAlignment="Center" Margin="0 0 5 0"/>
+                            <TextBlock VerticalAlignment="Center">Correo Elecrónico</TextBlock>
+                        </StackPanel>
+                    </materialDesign:HintAssist.Hint>
+                </TextBox>
 
-				<PasswordBox x:Name="pwbOldPassword" Grid.Row="2" Margin="15" LostFocus="PwbOldPassword_LostFocus">
-					<materialDesign:HintAssist.Hint>
-						<StackPanel Orientation="Horizontal" Margin="-2 0 0 0">
-							<materialDesign:PackIcon Kind="Key" VerticalAlignment="Center" Margin="0 0 5 0"/>
-							<TextBlock VerticalAlignment="Center">Contraseña actual</TextBlock>
-						</StackPanel>
-					</materialDesign:HintAssist.Hint>
-				</PasswordBox>
+                <PasswordBox x:Name="pwbOldPassword" Grid.Row="2" Margin="15" LostFocus="PwbOldPassword_LostFocus">
+                    <materialDesign:HintAssist.Hint>
+                        <StackPanel Orientation="Horizontal" Margin="-2 0 0 0">
+                            <materialDesign:PackIcon Kind="Key" VerticalAlignment="Center" Margin="0 0 5 0"/>
+                            <TextBlock VerticalAlignment="Center">Contraseña actual</TextBlock>
+                        </StackPanel>
+                    </materialDesign:HintAssist.Hint>
+                </PasswordBox>
 
                 <PasswordBox x:Name="pwbNewPassword" Grid.Row="3" Margin="15">
                     <materialDesign:HintAssist.Hint>
@@ -74,48 +68,18 @@
                     </materialDesign:HintAssist.Hint>
                 </PasswordBox>
 
+                <StackPanel Grid.Row="4" Orientation="Horizontal">
+                    <Button x:Name="btnCancel"  Click="BtnCancel_Click" Style="{StaticResource MaterialDesignFlatButton}" Margin="15" >Cancelar</Button>
+                    <Button x:Name="btnAccept" Click="BtnAccept_Click"  Style="{StaticResource MaterialDesignFlatButton}" Margin="15" >Aceptar</Button>
+                </StackPanel>
+
+                    <Button x:Name="btnDeleteAccount" Grid.Row="5" Click="BtnDeleteAccount_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Firebrick" Foreground="White" Style="{StaticResource MaterialDesignFlatButton}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock>Eliminar cuenta</TextBlock>
+                            <materialDesign:PackIcon Kind="Delete" />
+                        </StackPanel>
+                    </Button>
             </Grid>
-		</GroupBox>
-		<GroupBox Grid.Row="1" Header="Otros" Padding="5">
-			<Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto" />
-				</Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="auto" />
-
-                </Grid.ColumnDefinitions>
-                <Grid Grid.Row="2"  Grid.Column="0"  Margin="15">
-					<Grid.RowDefinitions>
-						<RowDefinition Height="auto" />
-					</Grid.RowDefinitions>
-					<Grid.ColumnDefinitions>
-						<ColumnDefinition Width="*" />
-					</Grid.ColumnDefinitions>
-
-					<Button x:Name="btnDeleteAccount" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Click="BtnDeleteAccount_Click" Background="Firebrick" Foreground="White" Style="{StaticResource MaterialDesignFlatButton}">
-						<StackPanel Orientation="Horizontal">
-							<TextBlock>Eliminar cuenta</TextBlock>
-							<materialDesign:PackIcon Kind="Delete" />
-						</StackPanel>
-					</Button>
-				</Grid>
-
-			</Grid>
-		</GroupBox>
-        <Grid Grid.Row="2" HorizontalAlignment="Center">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-
-            </Grid.ColumnDefinitions>
-
-            <Button x:Name="btnCancel"  Click="BtnCancel_Click" Grid.Column="0" Style="{StaticResource MaterialDesignFlatButton}" Margin="15" >Cancelar</Button>
-            <Button x:Name="btnAccept" Click="BtnAccept_Click"  Grid.Column="1" Style="{StaticResource MaterialDesignFlatButton}" Margin="15" >Aceptar</Button>
-
-        </Grid>
+        </materialDesign:Card>
     </Grid>
 </Page>

@@ -82,6 +82,10 @@
     <Compile Include="Migrations\201904070811336_InitialMigration05.Designer.cs">
       <DependentUpon>201904070811336_InitialMigration05.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904090413282_Migration05.cs" />
+    <Compile Include="Migrations\201904090413282_Migration05.Designer.cs">
+      <DependentUpon>201904090413282_Migration05.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Resources\Exceptions.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -119,6 +123,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904070811336_InitialMigration05.resx">
       <DependentUpon>201904070811336_InitialMigration05.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904090413282_Migration05.resx">
+      <DependentUpon>201904090413282_Migration05.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Exceptions.resx">
       <Generator>ResXFileCodeGenerator</Generator>

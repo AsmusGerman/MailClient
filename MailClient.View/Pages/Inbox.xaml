@@ -23,60 +23,60 @@
         <Grid>
 
             <Grid.RowDefinitions>
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
 
-        <Components:InboxMenu Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" SendedMailMessages="InboxMenu_SendedMailMessages" ReceivedMailMessages="InboxMenu_ReceivedMailMessages" DraftMailMessages="InboxMenu_DraftMailMessages"/>
+            <Components:InboxMenu Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" SendedMailMessages="InboxMenu_SendedMailMessages" ReceivedMailMessages="InboxMenu_ReceivedMailMessages" DraftMailMessages="InboxMenu_DraftMailMessages"/>
 
-        <materialDesign:ColorZone Grid.Row="0" Grid.ColumnSpan="2" Mode="PrimaryMid" Effect="{DynamicResource MaterialDesignShadowDepth2}">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="auto"/>
+            <materialDesign:ColorZone Grid.Row="0" Grid.ColumnSpan="2" Mode="PrimaryMid" Effect="{DynamicResource MaterialDesignShadowDepth2}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
                         <ColumnDefinition Width="auto"/>
 
                         <ColumnDefinition Width="auto"/>
-                </Grid.ColumnDefinitions>
+                    </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Column="0" x:Name="tbMailAddress" Margin="15"></TextBlock>
-                <Button Grid.Column="1" x:Name="btnNewMessage" Style="{StaticResource MaterialDesignFlatButton}" VerticalAlignment="Center" HorizontalAlignment="Right" Click="btnNewMessage_Click">
-                    <materialDesign:PackIcon Kind="Plus" Height="24" Width="24" Foreground="Orange" VerticalAlignment="Center"
+                    <TextBlock Grid.Column="0" x:Name="tbMailAddress" Margin="15"></TextBlock>
+                    <Button Grid.Column="1" x:Name="btnNewMessage" Style="{StaticResource MaterialDesignFlatButton}" VerticalAlignment="Center" HorizontalAlignment="Right" Click="btnNewMessage_Click">
+                        <materialDesign:PackIcon Kind="Plus" Height="24" Width="24" Foreground="Orange" VerticalAlignment="Center"
                                 HorizontalAlignment="Center" />
-                </Button>
-                <Button Grid.Column="2" x:Name="btnUpdate" Style="{StaticResource MaterialDesignFlatButton}" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 5 0" Click="btnUpdate_Click">
-                    <materialDesign:PackIcon Kind="AllInclusive" Height="24" Width="24" Foreground="Orange" VerticalAlignment="Center"
+                    </Button>
+                    <Button Grid.Column="2" x:Name="btnUpdate" Style="{StaticResource MaterialDesignFlatButton}" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 5 0" Click="btnUpdate_Click">
+                        <materialDesign:PackIcon Kind="AllInclusive" Height="24" Width="24" Foreground="Orange" VerticalAlignment="Center"
                                 HorizontalAlignment="Center" />
-                </Button>
+                    </Button>
                     <Button Grid.Column="3" x:Name="btnUpdateTen" Style="{StaticResource MaterialDesignFlatButton}" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 5 0" Click="btnUpdateTen_Click">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="PlusBox" Height="24" Width="24" Foreground="Orange" Margin="-5 0"/>
                             <materialDesign:PackIcon Kind="Number1Box" Height="24" Width="24" Foreground="Orange" Margin="-5 0"/>
                             <materialDesign:PackIcon Kind="Number0Box" Height="24" Width="24" Foreground="Orange" Margin="-5 0"/>
                         </StackPanel>
-                      
+
                     </Button>
                     <Button Grid.Column="4" x:Name="btnConfiguration" Style="{StaticResource MaterialDesignFlatButton}" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 5 0" Click="BtnConfiguration_Click">
-                    <materialDesign:PackIcon Kind="Settings" Height="24" Width="24" Foreground="Orange" VerticalAlignment="Center"
+                        <materialDesign:PackIcon Kind="Settings" Height="24" Width="24" Foreground="Orange" VerticalAlignment="Center"
                                 HorizontalAlignment="Center" />
-                </Button>
-            </Grid>
-        </materialDesign:ColorZone>
-        <StackPanel
+                    </Button>
+                </Grid>
+            </materialDesign:ColorZone>
+            <StackPanel
             Grid.Row="1"
             Grid.Column="1" 
             Orientation="Horizontal"
             HorizontalAlignment="Stretch">
-            <StackPanel
+                <StackPanel
                 Margin="10 0"
                 Orientation="Horizontal">
-                <TextBox
+                    <TextBox
                     x:Name="tbSearch"
                 Margin="5 0"
                 Padding="5 0"
@@ -85,66 +85,66 @@
                 BorderThickness="0"
                 MinWidth="200"
                 VerticalAlignment="Center" />
-                <Button x:Name="btnSearch" Click="BtnSearch_Click" Style="{DynamicResource MaterialDesignToolButton}" Margin="5 0" VerticalAlignment="Center">
-                    <materialDesign:PackIcon Kind="search" Opacity=".50"/>
-                </Button>
-            </StackPanel>
-            <StackPanel
+                    <Button x:Name="btnSearch" Click="BtnSearch_Click" Style="{DynamicResource MaterialDesignToolButton}" Margin="5 0" VerticalAlignment="Center">
+                        <materialDesign:PackIcon Kind="search" Opacity=".50"/>
+                    </Button>
+                </StackPanel>
+                <StackPanel
                 Margin="10 0"
                 Orientation="Horizontal">
-                <Button
+                    <Button
                 x:Name="btnFirstPage"
                 Click="BtnFirstPage_Click"
                 Style="{StaticResource MaterialDesignToolButton}">
-                    <materialDesign:PackIcon 
+                        <materialDesign:PackIcon 
                     Kind="FirstPage" 
                     Height="16" Width="16" Foreground="Orange"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Center" />
-                </Button>
-                <Button
+                    </Button>
+                    <Button
                 x:Name="btnPreviousPage"
                 Click="BtnPreviousPage_Click"
                 Style="{StaticResource MaterialDesignToolButton}">
-                    <materialDesign:PackIcon 
+                        <materialDesign:PackIcon 
                     Kind="NavigateBefore" 
                     Height="16" Width="16" Foreground="Orange"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Center" />
-                </Button>
-                <StackPanel  
+                    </Button>
+                    <StackPanel  
                 VerticalAlignment="Center"
                 Orientation="Horizontal"
                 Margin="20 0"
                 Opacity=".50">
-                    <TextBlock x:Name="tbCurrentPage"/>
-                    <TextBlock Text=" of "/>
-                    <TextBlock x:Name="tbLastPage"/>
-                </StackPanel>
-                <Button
+                        <TextBlock x:Name="tbCurrentPage"/>
+                        <TextBlock Text=" of "/>
+                        <TextBlock x:Name="tbLastPage"/>
+                    </StackPanel>
+                    <Button
                 x:Name="btnNextPage"
                 Click="BtnNextPage_Click"
                 Style="{StaticResource MaterialDesignToolButton}">
-                    <materialDesign:PackIcon 
+                        <materialDesign:PackIcon 
                     Kind="NavigateNext" 
                     Height="16" Width="16" Foreground="Orange"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Center" />
-                </Button>
-                <Button
+                    </Button>
+                    <Button
                 x:Name="btnLastPage"
                 Click="BtnLastPage_Click"
                 Style="{StaticResource MaterialDesignToolButton}">
-                    <materialDesign:PackIcon 
+                        <materialDesign:PackIcon 
                     Kind="LastPage" 
                     Height="16" Width="16" Foreground="Orange"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Center" />
-                </Button>
+                    </Button>
+                </StackPanel>
             </StackPanel>
-        </StackPanel>
 
-        <DataGrid Grid.Row="2" Grid.Column="1" Name="dtgMessages" Margin="0 5 0 0"
+            <DataGrid Grid.Row="2" Grid.Column="1" Name="dtgMessages" Margin="0 5 0 0"
 					CanUserSortColumns="True"
 					CanUserAddRows="False"
                     SelectionMode="Single"
@@ -155,31 +155,20 @@
 					materialDesign:DataGridAssist.ColumnHeaderPadding="2"
                   MouseDoubleClick="DtgMessages_MouseDoubleClick" CanUserResizeRows="False" AreRowDetailsFrozen="True"
                   >
-            <DataGrid.Columns>
-                <DataGridCheckBoxColumn Binding="{Binding IsSelected}" 
-							ElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnStyle}"
-							EditingElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnEditingStyle}">
-                    <DataGridCheckBoxColumn.Header>
-                        <CheckBox HorizontalAlignment="Center"
-									VerticalAlignment="Center"
-									DataContext="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, Path=DataContext}"
-									IsChecked="{Binding IsAllItems3Selected}" />
-                    </DataGridCheckBoxColumn.Header>
-                </DataGridCheckBoxColumn>
-
-
-                <materialDesign:MaterialDataGridTextColumn Binding="{Binding From.Value}"
+                <DataGrid.Columns>
+                    <materialDesign:MaterialDataGridTextColumn Binding="{Binding From.Value}"
 							Header="De:"
 							EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
-
-
-                <materialDesign:MaterialDataGridTextColumn Binding="{Binding Subject}"
+                    <materialDesign:MaterialDataGridTextColumn Binding="{Binding Subject}"
 							Width="*"
 							Header="Asunto"
 							EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
-            </DataGrid.Columns>
-        </DataGrid>
-    </Grid>
+                    <materialDesign:MaterialDataGridTextColumn Binding="{Binding DateSent}"
+							Header="Fecha"
+							EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
         <ProgressBar
             x:Name="iSpinner"
             Style="{StaticResource MaterialDesignCircularProgressBar}"

@@ -120,5 +120,11 @@ namespace MailClient.View
         {
             this.NavigationService.GoBack();
         }
+
+        private void QuitToMailAddressButton_Click(object sender, RoutedEventArgs e)
+        {
+            string mAddress = (string)((Button)sender).DataContext;
+            this.lvToMailAddresses.ItemsSource = this.lvToMailAddresses.ItemsSource.Cast<string>().Where(bAddress => bAddress != mAddress);
+        }
     }
 }

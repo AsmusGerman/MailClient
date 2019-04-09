@@ -7,12 +7,13 @@ using System.Net.Mail;
 
 namespace MailClient.BLL
 {
-    public class Pop3 : MailClient.Shared.IProtocol
-    {
-        public string Host { get; set; }
-        public string Name { get; set; }
-        public int Port { get; set; }
-        public bool SSL { get; set; }
+    public class Pop3 {
+
+        Shared.IProtocol iProtocol;
+        public Pop3(Shared.IProtocol pProtocol)
+        {
+            this.iProtocol = pProtocol;
+        }
 
         public IEnumerable<MailMessage> Retrieve(string pMailAddress, string pPassword, int pOffset = 0, int pWindow = 0)
         {
@@ -22,7 +23,7 @@ namespace MailClient.BLL
                     return new List<MailMessage>();
 
                 Pop3Client mPop3Client = new Pop3Client();
-                mPop3Client.Connect(this.Host, this.Port, this.SSL);
+                mPop3Client.Connect(this.iProtocol.Host, this.iProtocol.Port, this.iProtocol.SSL);
                 mPop3Client.Authenticate(pMailAddress, pPassword);
 
                 if (pWindow > mPop3Client.GetMessageCount() || pWindow == -1)
@@ -38,7 +39,7 @@ namespace MailClient.BLL
             }
             catch (Exception bException)
             {
-                throw new FailOnRetrieve(Resources.Exceptions.Pop3_Retrieve_UnknownErrorException, bException);
+                throw new FailOnRetrieve("Error en Pop3, posible problema con la conexión, autenticación o recupero de correos. Vea excepción interna.", bException);
             }
         }
 
@@ -46,6 +47,7 @@ namespace MailClient.BLL
         {
             MailMessage mMailMessage = pPopMessage.ToMailMessage();
             mMailMessage.Headers.Add("ExternalId", pPopMessage.Headers.MessageId);
+            mMailMessage.Headers.Add("DateSent", pPopMessage.Headers.DateSent.ToLongDateString());
             return mMailMessage;
         }
     }
